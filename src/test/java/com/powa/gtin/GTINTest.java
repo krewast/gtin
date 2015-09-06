@@ -24,6 +24,7 @@ import java.io.ObjectOutputStream;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 public class GTINTest {
@@ -33,6 +34,13 @@ public class GTINTest {
         String digits7 = "0123456";
 
         assertFalse(GTIN.matchesFormat(digits7));
+    }
+
+    @Test
+    public void stringOf7DigitsShouldNotBeValid() {
+        String digits7 = "0123456";
+
+        assertFalse(GTIN.isValid(digits7));
     }
 
     @Test
@@ -47,6 +55,13 @@ public class GTINTest {
         String letters8 = "abcdefgh";
 
         assertFalse(GTIN.matchesFormat(letters8));
+    }
+
+    @Test
+    public void stringOf8LettersShouldNotBeValid() {
+        String letters8 = "abcdefgh";
+
+        assertFalse(GTIN.isValid(letters8));
     }
 
     @Test
@@ -297,6 +312,14 @@ public class GTINTest {
     }
 
     @Test
+    public void gtinShouldBeEqualToItself() throws Exception {
+        String gtin14 = "10614141000415";
+        GTIN gtin = GTIN.create(gtin14);
+
+        assertTrue(gtin.equals(gtin));
+    }
+
+    @Test
     public void sameGtinsShouldBeEqual() throws Exception {
         String gtin14 = "10614141000415";
         GTIN gtin1 = GTIN.create(gtin14);
@@ -315,6 +338,43 @@ public class GTINTest {
 
         assertFalse(gtin1.equals(gtin2));
         assertFalse(gtin2.equals(gtin1));
+    }
+
+    @Test
+    public void gtinShouldNotBeEqualToObjectOfDifferentType() throws Exception {
+        String gtin14 = "10614141000415";
+        GTIN gtin = GTIN.create(gtin14);
+
+        assertFalse(gtin.equals(gtin14));
+        assertFalse(gtin.equals(true));
+    }
+
+    @Test
+    public void gtinHashCodeShouldBeConstant() throws Exception {
+        String gtin14 = "10614141000415";
+        GTIN gtin = GTIN.create(gtin14);
+
+        int hashCode1 = gtin.hashCode();
+        int hashCode2 = gtin.hashCode();
+
+        assertEquals(hashCode1, hashCode2);
+    }
+
+    @Test
+    public void sameGtinsShouldHaveEqualHashCodes() throws Exception {
+        String gtin14 = "10614141000415";
+        GTIN gtin1 = GTIN.create(gtin14);
+        GTIN gtin2 = GTIN.create(gtin14);
+
+        assertEquals(gtin1.hashCode(), gtin2.hashCode());
+    }
+
+    @Test
+    public void differentGtinsShouldHaveUnequalHashCodesIfPossible() throws Exception {
+        GTIN gtin1 = GTIN.create("10614141000415");
+        GTIN gtin2 = GTIN.create("34957354738950");
+
+        assertNotEquals(gtin1.hashCode(), gtin2.hashCode());
     }
 
     @Test
@@ -337,11 +397,11 @@ public class GTINTest {
 
     @Test
     public void gtin13CalculatedCheckDigitShouldBeCorrect() {
-        String partialGtin13 = "023424827348";
+        String partialGtin13 = "295248972349";
 
         int checkDigit = GTIN.calculateCheckDigit(partialGtin13);
 
-        assertEquals(7, checkDigit);
+        assertEquals(0, checkDigit);
     }
 
     @Test
@@ -430,6 +490,31 @@ public class GTINTest {
         assertEquals(6, gtin.digitAt(2));
         assertEquals(1, gtin.digitAt(12));
         assertEquals(5, gtin.digitAt(13));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void validateNullShouldThrowException() {
+        GTIN.isValid(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void calculateCheckDigitNullShouldThrowException() {
+        GTIN.calculateCheckDigit(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void withNullCheckDigitShouldThrowException() {
+        GTIN.withCheckDigit(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void createNullShouldThrowException() {
+        GTIN.create(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void createWithNullCheckDigitShouldThrowException() {
+        GTIN.createWithCheckDigit(null);
     }
 
     @Test
