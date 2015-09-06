@@ -16,9 +16,9 @@
 package com.powa.gtin;
 
 /**
- * Indicates an attempt to parse an invalid string to a GTIN.
+ * Indicates an attempt to perform an operation on a string that is not a valid GTIN.
  */
-public class InvalidGTINException extends RuntimeException {
+public class InvalidGTINException extends IllegalArgumentException {
 
     /**
      * Constructs a new {@code InvalidGTINException} with the specified detail message. The

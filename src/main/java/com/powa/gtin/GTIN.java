@@ -35,7 +35,7 @@ public final class GTIN implements Serializable {
     }
 
     /**
-     * Parses a GTIN string into a GTIN object.
+     * Creates a GTIN from the given string.
      * You may use the {@link #isValid(String)} method first if you are unsure whether the
      * string is a valid GTIN to avoid.
      *
@@ -43,12 +43,23 @@ public final class GTIN implements Serializable {
      * @return a GTIN object if the string is a valid GTIN.
      * @throws InvalidGTINException if the string is not a valid GTIN.
      */
-    public static GTIN parse(final String gtin) throws InvalidGTINException {
+    public static GTIN create(final String gtin) throws InvalidGTINException {
         if (!isValid(gtin)) {
-            throw new InvalidGTINException("Cannot parse invalid string " + gtin + " to string");
+            throw new InvalidGTINException("String '" + gtin + "' is not a valid gtin");
         }
 
         return new GTIN(gtin);
+    }
+
+    /**
+     * Creates a GTIN from the given partial GTIN string without the check digit.
+     *
+     * @param gtinWithoutCheckDigit the GTIN without the final check digit.
+     * @return a GTIN object if the string is a valid GTIN.
+     * @throws InvalidGTINException if the string is not a valid partial GTIN.
+     */
+    public static GTIN createWithCheckDigit(final String gtinWithoutCheckDigit) throws InvalidGTINException {
+        return new GTIN(withCheckDigit(gtinWithoutCheckDigit));
     }
 
     /**
@@ -62,7 +73,6 @@ public final class GTIN implements Serializable {
         if (!matchesFormat(gtin)) {
             return false;
         }
-
         int checkSum = 0;
         int gtinLength = gtin.length();
         int weightBit = gtinLength % 2;
@@ -70,8 +80,41 @@ public final class GTIN implements Serializable {
             int weight = i % 2 == weightBit ? 3 : 1;
             checkSum += Integer.parseInt(gtin.substring(i, i + 1)) * weight;
         }
-
         return checkSum % 10 == 0;
+    }
+
+    /**
+     * Calculates the check digit for a partial GTIN.
+     *
+     * @param gtinWithoutCheckDigit the GTIN without the final check digit.
+     * @return the check digit to complete the GTIN code.
+     * @throws InvalidGTINException if the string is not a valid partial GTIN without the check
+     * digit.
+     */
+    public static int calculateCheckDigit(final String gtinWithoutCheckDigit) {
+        if (!matchesFormat(gtinWithoutCheckDigit, 1)) {
+            throw new InvalidGTINException("String '" + gtinWithoutCheckDigit + "' is not a valid partial gtin");
+        }
+        int checkSum = 0;
+        int gtinLength = gtinWithoutCheckDigit.length();
+        int weightBit = (gtinLength + 1) % 2;
+        for (int i = 0; i < gtinLength; i++) {
+            int weight = i % 2 == weightBit ? 3 : 1;
+            checkSum += Integer.parseInt(gtinWithoutCheckDigit.substring(i, i + 1)) * weight;
+        }
+        return checkSum % 10 == 0 ? 0 : 10 - (checkSum % 10);
+    }
+
+    /**
+     * Returns the given partial GTIN code with check digit added.
+     *
+     * @param gtinWithoutCheckDigit the GTIN without the final check digit.
+     * @return the GTIN code with check digit.
+     * @throws InvalidGTINException if the string is not a valid partial GTIN without the check
+     * digit.
+     */
+    public static String withCheckDigit(final String gtinWithoutCheckDigit) {
+        return gtinWithoutCheckDigit + Integer.toString(calculateCheckDigit(gtinWithoutCheckDigit));
     }
 
     /**
@@ -82,16 +125,25 @@ public final class GTIN implements Serializable {
      * @return {@code true} if the input string is a valid GTIN string, {@code false} otherwise.
      */
     public static boolean matchesFormat(final String gtin) {
+        return matchesFormat(gtin, 0);
+    }
+
+    private static boolean matchesFormat(final String gtin, final int offset) {
         if (gtin == null) {
             throw new IllegalArgumentException("gtin is null");
         }
-
-        // Check length is ok
+        // Check length
         int gtinLength = gtin.length();
-        if (gtinLength != 8 && gtinLength != 12 && gtinLength != 13 && gtinLength != 14) {
+        boolean validLength = false;
+        for (GTINFormat gtinFormat : GTINFormat.values()) {
+            if (gtinLength == gtinFormat.length() - offset) {
+                validLength = true;
+                break;
+            }
+        }
+        if (!validLength) {
             return false;
         }
-
         // Check whether is a number
         return gtin.matches("^\\d+$");
     }
@@ -108,6 +160,24 @@ public final class GTIN implements Serializable {
      */
     public int length() {
         return format.length();
+    }
+
+    /**
+     * @return the check digit of this GTIN.
+     */
+    public int checkDigit() {
+        return Integer.parseInt(gtin.substring(gtin.length() - 1));
+    }
+
+    /**
+     * Gets the digit at the specified position.
+     *
+     * @param position the position, from 0 to length - 1.
+     * @return the digit at the specified position.
+     * @throws java.lang.IndexOutOfBoundsException if the position is not between 0 and length - 1.
+     */
+    public int digitAt(final int position) {
+        return Integer.parseInt(gtin.substring(position, position + 1));
     }
 
     /**

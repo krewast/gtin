@@ -47,15 +47,13 @@ public enum GTINFormat {
     }
 
     static GTINFormat forLength(final int gtinLength) {
-        GTINFormat[] gtinFormats = GTINFormat.values();
-        for (GTINFormat gtinFormat : gtinFormats) {
+        for (GTINFormat gtinFormat : GTINFormat.values()) {
             if (gtinLength == gtinFormat.length()) {
                 return gtinFormat;
             }
         }
-
-        throw new IllegalArgumentException(String.format("Length '%d' does not match the length"
-                + " of any known GTIN formats", gtinLength));
+        throw new IllegalArgumentException("Length '" + gtinLength + "' does not match the length"
+                + " of any known GTIN formats");
     }
 
     /**
