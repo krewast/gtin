@@ -2,7 +2,7 @@
 
 A library for validating and parsing GTIN-8, GTIN-12, GTIN-13 and GTIN-14 codes.
 
-<a href="https://travis-ci.org/powa/gtin"><img src="https://travis-ci.org/powa/gtin.svg?branch=master"></a>
+[![Build status](https://travis-ci.org/powa/gtin.svg?branch=master)](https://travis-ci.org/powa/gtin) [![Download](https://api.bintray.com/packages/powa/maven/gtin/images/download.svg)](https://bintray.com/powa/maven/gtin/_latestVersion)
 
 ## Using
 
