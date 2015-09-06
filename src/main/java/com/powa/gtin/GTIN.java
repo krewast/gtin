@@ -15,11 +15,15 @@
  */
 package com.powa.gtin;
 
+import java.io.Serializable;
+
 /**
  * Valid GTIN code. Static methods are provided for identifying, validating and parsing GTIN codes
  * represented as strings.
  */
-public final class GTIN {
+public final class GTIN implements Serializable {
+
+    private static final long serialVersionUID = 349852370955535L;
 
     private final String gtin;
     private final GTINFormat format;
@@ -112,6 +116,16 @@ public final class GTIN {
     @Override
     public String toString() {
         return gtin;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        return obj == this || obj instanceof GTIN && gtin.equals(((GTIN) obj).gtin);
+    }
+
+    @Override
+    public int hashCode() {
+        return 37 + gtin.hashCode();
     }
 
 }

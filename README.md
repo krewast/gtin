@@ -4,7 +4,23 @@ A library for validating and parsing GTIN-8, GTIN-12, GTIN-13 and GTIN-14 codes.
 
 ## Using
 
-Add the GTIN library as a dependency of your application.
+Check if a string is a valid GTIN by validating the checksum
+
+    GTIN.isValid("734092309436");
+
+Parse a string to a GTIN object
+
+    GTIN gtin = GTIN.parse("734092309436")
+
+See if a string matches the general GTIN format
+
+    GTIN.matchesFormat("00000000")
+
+Convert a GTIN object back to a string
+
+    String str = gtin.toString();
+
+Add the GTIN library as a dependency of your application with
 
 Maven
 
@@ -46,10 +62,6 @@ Gradle
     dependencies {
         compile 'com.powa:gtin:1.0.0'
     }
-
-Check if a string is a valid GTIN by validating the checksum
-
-    GTIN.isValid("734092309436");
 
 ## Building
 

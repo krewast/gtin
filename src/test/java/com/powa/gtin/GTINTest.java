@@ -17,6 +17,11 @@ package com.powa.gtin;
 
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -289,6 +294,35 @@ public class GTINTest {
         String badGtin14 = "10614141000416";
 
         GTIN.parse(badGtin14);
+    }
+
+    @Test
+    public void gtinsShouldBeEqual() throws Exception {
+        String gtin14 = "10614141000415";
+        GTIN gtin1 = GTIN.parse(gtin14);
+        GTIN gtin2 = GTIN.parse(gtin14);
+
+        assertTrue(gtin1.equals(gtin2));
+    }
+
+    @Test
+    public void gtinAndDeserializedGtinShouldBeEqual() throws Exception {
+        String gtin14 = "10614141000415";
+
+        GTIN gtin = GTIN.parse(gtin14);
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(buffer);
+        oos.writeObject(gtin);
+        oos.flush();
+        oos.close();
+        ByteArrayInputStream in = new ByteArrayInputStream(buffer.toByteArray());
+        ObjectInputStream ois = new ObjectInputStream(in);
+        GTIN deserializedGtin = (GTIN) ois.readObject();
+
+        assertEquals(gtin, deserializedGtin);
+        assertEquals(gtin.toString(), deserializedGtin.toString());
+        assertEquals(gtin.format(), deserializedGtin.format());
+        assertEquals(gtin.length(), deserializedGtin.length());
     }
 
 }
