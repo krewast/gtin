@@ -63,7 +63,7 @@ Maven
         <dependency>
             <group>com.powa</group>
             <artifactId>gtin</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.3</version>
         </dependency>
     </dependencies>
 
@@ -75,7 +75,7 @@ Gradle
         }
     }
     dependencies {
-        compile 'com.powa:gtin:1.0.2'
+        compile 'com.powa:gtin:1.0.3'
     }
 
 ## Building
@@ -98,3 +98,7 @@ Set `BINTRAY_USER` to your Bintray username `BINTRAY_KEY` to your API key.
 With this configuration in place a deployment can be started with
 
     ./gradlew uploadArchives
+
+You then need to manually log into [Bintray](https://bintray.com/powa/maven/gtin/view) and publish the archives to make them publicly available.
+
+It is recommended you go to the 'Files' section of the latest version and add the `gtin-x.y.z.jar` to the download list using the 'Actions' menu.
