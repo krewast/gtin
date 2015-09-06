@@ -61,4 +61,17 @@ public class GTINFormatTest {
         GTINFormat.forLength(15);
     }
 
+    @Test
+    public void valueOf() {
+        assertEquals(GTINFormat.GTIN_8, GTINFormat.valueOf("GTIN_8"));
+        assertEquals(GTINFormat.GTIN_12, GTINFormat.valueOf("GTIN_12"));
+        assertEquals(GTINFormat.GTIN_13, GTINFormat.valueOf("GTIN_13"));
+        assertEquals(GTINFormat.GTIN_14, GTINFormat.valueOf("GTIN_14"));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void valueOfUnknownValueShouldThrowException() {
+        GTINFormat.valueOf("GTIN_15");
+    }
+
 }
