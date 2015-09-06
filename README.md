@@ -2,6 +2,8 @@
 
 A library for validating and parsing GTIN-8, GTIN-12, GTIN-13 and GTIN-14 codes.
 
+<a href="https://travis-ci.org/powa/gtin"><img src="https://travis-ci.org/powa/gtin.svg?branch=master"></a>
+
 ## Using
 
 Check if a string is a valid GTIN by validating the checksum
