@@ -51,6 +51,20 @@ public class GTINTest {
     }
 
     @Test
+    public void stringOf8DigitsShouldMatchFormat8() {
+        String digits8 = "01234567";
+
+        assertTrue(GTIN.matchesFormat8(digits8));
+    }
+
+    @Test
+    public void stringOf8DigitsShouldNotMatchFormat12() {
+        String digits8 = "01234567";
+
+        assertFalse(GTIN.matchesFormat12(digits8));
+    }
+
+    @Test
     public void stringOf8LettersShouldNotMatchFormat() {
         String letters8 = "abcdefgh";
 
@@ -93,6 +107,20 @@ public class GTINTest {
     }
 
     @Test
+    public void stringOf12DigitsShouldMatchFormat12() {
+        String digits12 = "012345678901";
+
+        assertTrue(GTIN.matchesFormat12(digits12));
+    }
+
+    @Test
+    public void stringOf12DigitsShouldNotMatchFormat13() {
+        String digits12 = "012345678901";
+
+        assertFalse(GTIN.matchesFormat13(digits12));
+    }
+
+    @Test
     public void stringOf12LettersShouldNotMatchFormat() {
         String letters12 = "abcdefghijkl";
 
@@ -114,6 +142,20 @@ public class GTINTest {
     }
 
     @Test
+    public void stringOf13DigitsShouldMatchFormat13() {
+        String digits13 = "0123456789012";
+
+        assertTrue(GTIN.matchesFormat13(digits13));
+    }
+
+    @Test
+    public void stringOf13DigitsShouldNotMatchFormat14() {
+        String digits13 = "0123456789012";
+
+        assertFalse(GTIN.matchesFormat14(digits13));
+    }
+
+    @Test
     public void stringOf13LettersShouldNotMatchFormat() {
         String letters13 = "abcdefghijklm";
 
@@ -132,6 +174,27 @@ public class GTINTest {
         String digits14 = "01234567890123";
 
         assertTrue(GTIN.matchesFormat(digits14));
+    }
+
+    @Test
+    public void stringOf14DigitsShouldMatchFormat14() {
+        String digits14 = "01234567890123";
+
+        assertTrue(GTIN.matchesFormat14(digits14));
+    }
+
+    @Test
+    public void stringOf14DigitsShouldMatchGtinFormat14() {
+        String digits14 = "01234567890123";
+
+        assertTrue(GTIN.matchesFormat(digits14, GTINFormat.GTIN_14));
+    }
+
+    @Test
+    public void stringOf14DigitsShouldNotMatchFormat13() {
+        String digits14 = "01234567890123";
+
+        assertFalse(GTIN.matchesFormat13(digits14));
     }
 
     @Test
