@@ -8,13 +8,13 @@ Check if a string is a valid GTIN by validating the checksum
 
     GTIN.isValid("734092309436");
 
-Parse a string to a GTIN object
-
-    GTIN gtin = GTIN.parse("734092309436")
-
 See if a string matches the general GTIN format
 
-    GTIN.matchesFormat("00000000")
+    GTIN.matchesFormat("00000000");
+
+Parse a string to a GTIN object
+
+    GTIN gtin = GTIN.parse("734092309436");
 
 Convert a GTIN object back to a string
 
