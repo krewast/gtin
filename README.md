@@ -61,7 +61,7 @@ Maven
         <dependency>
             <group>com.powa</group>
             <artifactId>gtin</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2</version>
         </dependency>
     </dependencies>
 
@@ -73,7 +73,7 @@ Gradle
         }
     }
     dependencies {
-        compile 'com.powa:gtin:1.0.1'
+        compile 'com.powa:gtin:1.0.2'
     }
 
 ## Building
