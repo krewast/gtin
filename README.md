@@ -82,6 +82,10 @@ To build the library and run all unit tests use
 
     ./gradlew clean build
 
+View coverage report
+
+    ./gradlew jacocoTestReport
+
 ## Deploying
 
 The gtin library is deployed through Bintray.
