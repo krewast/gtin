@@ -1,0 +1,75 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.powa'
+version = '1.0.0'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: 'https://api.bintray.com/maven/powa/maven/gtin') {
+            authentication(userName: System.getenv('BINTRAY_USER'), password: System.getenv('BINTRAY_KEY'))
+        }
+
+        pom.project {
+            name 'gtin'
+            packaging 'jar'
+            description 'A library for validating and parsing GTIN-8, GTIN-12, GTIN-13 and GTIN-14 codes.'
+            url 'https://github.com/powa/gtin'
+
+            scm {
+                connection 'scm:git:git@github.com:powa/gtin.git'
+                developerConnection 'scm:git:git@github.com:powa/gtin.git'
+                url 'https://github.com/powa/gtin'
+            }
+
+            licenses {
+                license {
+                    name 'Apache License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+
+            developers {
+                developer {
+                    name 'Joseph Earl'
+                    email 'joseph@powa.com'
+                    organization 'Powa Technologies Ltd'
+                    organizationUrl 'http://www.powa.com'
+                }
+            }
+        }
+    }
+}
