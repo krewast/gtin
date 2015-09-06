@@ -297,12 +297,24 @@ public class GTINTest {
     }
 
     @Test
-    public void gtinsShouldBeEqual() throws Exception {
+    public void sameGtinsShouldBeEqual() throws Exception {
         String gtin14 = "10614141000415";
         GTIN gtin1 = GTIN.parse(gtin14);
         GTIN gtin2 = GTIN.parse(gtin14);
 
         assertTrue(gtin1.equals(gtin2));
+        assertTrue(gtin2.equals(gtin1));
+    }
+
+    @Test
+    public void differentGtinsShouldNotBeEqual() throws Exception {
+        String gtin13 = "0234248273487";
+        String gtin14 = "10614141000415";
+        GTIN gtin1 = GTIN.parse(gtin14);
+        GTIN gtin2 = GTIN.parse(gtin13);
+
+        assertFalse(gtin1.equals(gtin2));
+        assertFalse(gtin2.equals(gtin1));
     }
 
     @Test
