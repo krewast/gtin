@@ -22,42 +22,42 @@ import static org.junit.Assert.assertEquals;
 public class GTINFormatTest {
 
     @Test(expected = IllegalArgumentException.class)
-    public void formatForLength7ShouldThrowIllegalArgumentException() {
+    public void forLength7ShouldThrowIllegalArgumentException() {
         GTINFormat.forLength(7);
     }
 
     @Test
-    public void formatForLength8ShouldReturnGTIN_8() {
+    public void forLength8ShouldReturnGTIN_8() {
         assertEquals(GTINFormat.GTIN_8, GTINFormat.forLength(8));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void formatForLength9ShouldThrowIllegalArgumentException() {
+    public void forLength9ShouldThrowIllegalArgumentException() {
         GTINFormat.forLength(9);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void formatForLength11ShouldThrowIllegalArgumentException() {
+    public void forLength11ShouldThrowIllegalArgumentException() {
         GTINFormat.forLength(11);
     }
 
     @Test
-    public void formatForLength12ShouldReturnGTIN_12() {
+    public void forLength12ShouldReturnGTIN_12() {
         assertEquals(GTINFormat.GTIN_12, GTINFormat.forLength(12));
     }
 
     @Test
-    public void formatForLength13ShouldReturnGTIN_13() {
+    public void forLength13ShouldReturnGTIN_13() {
         assertEquals(GTINFormat.GTIN_13, GTINFormat.forLength(13));
     }
 
     @Test
-    public void formatForLength14ShouldReturnGTIN_14() {
+    public void forLength14ShouldReturnGTIN_14() {
         assertEquals(GTINFormat.GTIN_14, GTINFormat.forLength(14));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void formatForLength15ShouldThrowIllegalArgumentException() {
+    public void forLength15ShouldThrowIllegalArgumentException() {
         GTINFormat.forLength(15);
     }
 

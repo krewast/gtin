@@ -163,10 +163,10 @@ public class GTINTest {
     }
 
     @Test
-    public void gtin8ShouldBeValid2() {
+    public void gtin8ShouldBeValid8() {
         String gtin8 = "03485736";
 
-        assertTrue(GTIN.isValid(gtin8));
+        assertTrue(GTIN.isValid8(gtin8));
     }
 
     @Test
@@ -202,10 +202,10 @@ public class GTINTest {
     }
 
     @Test
-    public void gtin12ShouldBeValid2() {
+    public void gtin12ShouldBeValid12() {
         String gtin12 = "734092309436";
 
-        assertTrue(GTIN.isValid(gtin12));
+        assertTrue(GTIN.isValid12(gtin12));
     }
 
     @Test
@@ -241,10 +241,17 @@ public class GTINTest {
     }
 
     @Test
-    public void gtin13ShouldBeValid2() {
+    public void gtin13ShouldBeValid13() {
         String gtin13 = "0234248273487";
 
-        assertTrue(GTIN.isValid(gtin13));
+        assertTrue(GTIN.isValid13(gtin13));
+    }
+
+    @Test
+    public void gtin13ShouldNotBeValid14() {
+        String gtin13 = "0234248273487";
+
+        assertFalse(GTIN.isValid14(gtin13));
     }
 
     @Test
@@ -280,10 +287,17 @@ public class GTINTest {
     }
 
     @Test
-    public void gtin14ShouldBeValid2() {
+    public void gtin14ShouldBeValid14() {
         String gtin14 = "34957354738950";
 
-        assertTrue(GTIN.isValid(gtin14));
+        assertTrue(GTIN.isValid14(gtin14));
+    }
+
+    @Test
+    public void gtin14ShouldNotBeValid8() {
+        String gtin14 = "34957354738950";
+
+        assertFalse(GTIN.isValid8(gtin14));
     }
 
     @Test

@@ -10,6 +10,8 @@ Check if a string is a valid GTIN by validating the checksum
 
     GTIN.isValid("734092309436"); // true
     GTIN.isValid("734092309432"); // false
+    GTIN.isValid12("734092309436"); // true
+    GTIN.isValid13("734092309436"); // false
 
 See if a string matches the general GTIN format
 

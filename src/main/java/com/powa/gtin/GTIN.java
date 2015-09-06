@@ -63,14 +63,29 @@ public final class GTIN implements Serializable {
     }
 
     /**
-     * Checks the GTIN for validity by checking the format and checksum.
+     * Checks if the string is a valid GTIN by checking the format and checksum.
      *
-     * @param gtin the GTIN, may be GTIN-8, GTIN-12, GTIN-13 or GTIN-14 format.
+     * @param gtin the GTIN string to check, may be GTIN-8, GTIN-12, GTIN-13 or GTIN-14 format.
      * @return {@code true} if the GTIN is valid, {@code false} otherwise.
      */
     public static boolean isValid(final String gtin) {
+        return isValid(gtin, null);
+    }
+
+    /**
+     * Checks if the string is a valid specific GTIN format by checking the format, length
+     * and checksum.
+     *
+     * @param gtin the GTIN string to check, may be GTIN-8, GTIN-12, GTIN-13 or GTIN-14 format.
+     * @param format the GTIN format to check the string against.
+     * @return {@code true} if the GTIN is valid, {@code false} otherwise.
+     */
+    public static boolean isValid(final String gtin, final GTINFormat format) {
         // Check format of barcode for validity
         if (!matchesFormat(gtin)) {
+            return false;
+        }
+        if (format != null && gtin.length() != format.length()) {
             return false;
         }
         int checkSum = 0;
@@ -81,6 +96,46 @@ public final class GTIN implements Serializable {
             checkSum += Integer.parseInt(gtin.substring(i, i + 1)) * weight;
         }
         return checkSum % 10 == 0;
+    }
+
+    /**
+     * Checks if the string is a valid GTIN-8 by checking the format and checksum.
+     *
+     * @param gtin the GTIN-8 string to check.
+     * @return {@code true} if the GTIN is valid, {@code false} otherwise.
+     */
+    public static boolean isValid8(final String gtin) {
+        return isValid(gtin, GTINFormat.GTIN_8);
+    }
+
+    /**
+     * Checks if the string is a valid GTIN-12 by checking the format and checksum.
+     *
+     * @param gtin the GTIN-12 string to check.
+     * @return {@code true} if the GTIN is valid, {@code false} otherwise.
+     */
+    public static boolean isValid12(final String gtin) {
+        return isValid(gtin, GTINFormat.GTIN_12);
+    }
+
+    /**
+     * Checks if the string is a valid GTIN-13 by checking the format and checksum.
+     *
+     * @param gtin the GTIN-13 string to check.
+     * @return {@code true} if the GTIN is valid, {@code false} otherwise.
+     */
+    public static boolean isValid13(final String gtin) {
+        return isValid(gtin, GTINFormat.GTIN_13);
+    }
+
+    /**
+     * Checks if the string is a valid GTIN-14 by checking the format and checksum.
+     *
+     * @param gtin the GTIN-14 string to check.
+     * @return {@code true} if the GTIN is valid, {@code false} otherwise.
+     */
+    public static boolean isValid14(final String gtin) {
+        return isValid(gtin, GTINFormat.GTIN_14);
     }
 
     /**

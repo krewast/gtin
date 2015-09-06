@@ -46,7 +46,15 @@ public enum GTINFormat {
         this.length = length;
     }
 
-    static GTINFormat forLength(final int gtinLength) {
+    /**
+     * Gets the GTIN format for the specified length.
+     *
+     * @param gtinLength the length of the GTIN.
+     * @return the GTINFormat for the given length.
+     * @throws IllegalArgumentException if the length does not match the length of any of the
+     * known formats.
+     */
+    public static GTINFormat forLength(final int gtinLength) {
         for (GTINFormat gtinFormat : GTINFormat.values()) {
             if (gtinLength == gtinFormat.length()) {
                 return gtinFormat;
@@ -57,7 +65,7 @@ public enum GTINFormat {
     }
 
     /**
-     * @return The length of this GTIN format.
+     * @return the length of this GTIN format.
      */
     public int length() {
         return length;
