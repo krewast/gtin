@@ -18,7 +18,7 @@ package com.powa.gtin;
 /**
  * Indicates an attempt to perform an operation on a string that is not a valid GTIN.
  */
-public class InvalidGTINException extends IllegalArgumentException {
+public class GtinFormatException extends IllegalArgumentException {
 
     /**
      * Constructs a new {@code InvalidGTINException} with the specified detail message. The
@@ -26,7 +26,7 @@ public class InvalidGTINException extends IllegalArgumentException {
      *
      * @param message the detail message.
      */
-    public InvalidGTINException(final String message) {
+    public GtinFormatException(final String message) {
         super(message);
     }
 

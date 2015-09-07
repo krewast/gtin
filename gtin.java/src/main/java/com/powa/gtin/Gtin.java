@@ -21,34 +21,34 @@ import java.io.Serializable;
  * Valid GTIN code. Static methods are provided for identifying, validating and parsing GTIN codes
  * represented as strings.
  */
-public final class GTIN implements Serializable {
+public final class Gtin implements Serializable {
 
     private static final long serialVersionUID = 349852370955535L;
 
     private final String gtin;
-    private final GTINFormat format;
+    private final GtinFormat format;
 
     // Prevent instantiation
-    private GTIN(final String gtin) {
+    private Gtin(final String gtin) {
         this.gtin = gtin;
-        format = GTINFormat.forLength(gtin.length());
+        format = GtinFormat.forLength(gtin.length());
     }
 
     /**
      * Creates a GTIN from the given string.
      * You may use the {@link #isValid(String)} method first if you are unsure whether the
-     * string is a valid GTIN to avoid.
+     * string is a valid GTIN to avoid a GtinFormatException being thrown.
      *
      * @param gtin the GTIN string.
      * @return a GTIN object if the string is a valid GTIN.
-     * @throws InvalidGTINException if the string is not a valid GTIN.
+     * @throws GtinFormatException if the string is not a valid GTIN.
      */
-    public static GTIN create(final String gtin) throws InvalidGTINException {
+    public static Gtin create(final String gtin) throws GtinFormatException {
         if (!isValid(gtin)) {
-            throw new InvalidGTINException("String '" + gtin + "' is not a valid gtin");
+            throw new GtinFormatException("String '" + gtin + "' is not a valid gtin");
         }
 
-        return new GTIN(gtin);
+        return new Gtin(gtin);
     }
 
     /**
@@ -56,10 +56,10 @@ public final class GTIN implements Serializable {
      *
      * @param gtinWithoutCheckDigit the GTIN without the final check digit.
      * @return a GTIN object if the string is a valid GTIN.
-     * @throws InvalidGTINException if the string is not a valid partial GTIN.
+     * @throws GtinFormatException if the string is not a valid partial GTIN.
      */
-    public static GTIN createWithCheckDigit(final String gtinWithoutCheckDigit) throws InvalidGTINException {
-        return new GTIN(withCheckDigit(gtinWithoutCheckDigit));
+    public static Gtin createWithCheckDigit(final String gtinWithoutCheckDigit) throws GtinFormatException {
+        return new Gtin(withCheckDigit(gtinWithoutCheckDigit));
     }
 
     /**
@@ -80,7 +80,7 @@ public final class GTIN implements Serializable {
      * @param format the GTIN format to check the string against.
      * @return {@code true} if the GTIN is valid, {@code false} otherwise.
      */
-    public static boolean isValid(final String gtin, final GTINFormat format) {
+    public static boolean isValid(final String gtin, final GtinFormat format) {
         // Check format of barcode for validity
         if (!matchesFormat(gtin)) {
             return false;
@@ -105,7 +105,7 @@ public final class GTIN implements Serializable {
      * @return {@code true} if the GTIN is valid, {@code false} otherwise.
      */
     public static boolean isValid8(final String gtin) {
-        return isValid(gtin, GTINFormat.GTIN_8);
+        return isValid(gtin, GtinFormat.GTIN_8);
     }
 
     /**
@@ -115,7 +115,7 @@ public final class GTIN implements Serializable {
      * @return {@code true} if the GTIN is valid, {@code false} otherwise.
      */
     public static boolean isValid12(final String gtin) {
-        return isValid(gtin, GTINFormat.GTIN_12);
+        return isValid(gtin, GtinFormat.GTIN_12);
     }
 
     /**
@@ -125,7 +125,7 @@ public final class GTIN implements Serializable {
      * @return {@code true} if the GTIN is valid, {@code false} otherwise.
      */
     public static boolean isValid13(final String gtin) {
-        return isValid(gtin, GTINFormat.GTIN_13);
+        return isValid(gtin, GtinFormat.GTIN_13);
     }
 
     /**
@@ -135,7 +135,7 @@ public final class GTIN implements Serializable {
      * @return {@code true} if the GTIN is valid, {@code false} otherwise.
      */
     public static boolean isValid14(final String gtin) {
-        return isValid(gtin, GTINFormat.GTIN_14);
+        return isValid(gtin, GtinFormat.GTIN_14);
     }
 
     /**
@@ -143,12 +143,12 @@ public final class GTIN implements Serializable {
      *
      * @param gtinWithoutCheckDigit the GTIN without the final check digit.
      * @return the check digit to complete the GTIN code.
-     * @throws InvalidGTINException if the string is not a valid partial GTIN without the check
+     * @throws GtinFormatException if the string is not a valid partial GTIN without the check
      * digit.
      */
     public static int calculateCheckDigit(final String gtinWithoutCheckDigit) {
         if (!matchesFormat(gtinWithoutCheckDigit, null, 1)) {
-            throw new InvalidGTINException("String '" + gtinWithoutCheckDigit + "' is not a valid partial gtin");
+            throw new GtinFormatException("String '" + gtinWithoutCheckDigit + "' is not a valid partial gtin");
         }
         int checkSum = 0;
         int gtinLength = gtinWithoutCheckDigit.length();
@@ -165,7 +165,7 @@ public final class GTIN implements Serializable {
      *
      * @param gtinWithoutCheckDigit the GTIN without the final check digit.
      * @return the GTIN code with check digit.
-     * @throws InvalidGTINException if the string is not a valid partial GTIN without the check
+     * @throws GtinFormatException if the string is not a valid partial GTIN without the check
      * digit.
      */
     public static String withCheckDigit(final String gtinWithoutCheckDigit) {
@@ -191,7 +191,7 @@ public final class GTIN implements Serializable {
      * @param format the GTIN format to check the string against.
      * @return {@code true} if the input string is a valid GTIN string, {@code false} otherwise.
      */
-    public static boolean matchesFormat(final String gtin, final GTINFormat format) {
+    public static boolean matchesFormat(final String gtin, final GtinFormat format) {
         return matchesFormat(gtin, format, 0);
     }
 
@@ -203,7 +203,7 @@ public final class GTIN implements Serializable {
      * @return {@code true} if the input string is a valid GTIN string, {@code false} otherwise.
      */
     public static boolean matchesFormat8(final String gtin) {
-        return matchesFormat(gtin, GTINFormat.GTIN_8, 0);
+        return matchesFormat(gtin, GtinFormat.GTIN_8, 0);
     }
 
     /**
@@ -214,7 +214,7 @@ public final class GTIN implements Serializable {
      * @return {@code true} if the input string is a valid GTIN string, {@code false} otherwise.
      */
     public static boolean matchesFormat12(final String gtin) {
-        return matchesFormat(gtin, GTINFormat.GTIN_12, 0);
+        return matchesFormat(gtin, GtinFormat.GTIN_12, 0);
     }
 
     /**
@@ -225,7 +225,7 @@ public final class GTIN implements Serializable {
      * @return {@code true} if the input string is a valid GTIN string, {@code false} otherwise.
      */
     public static boolean matchesFormat13(final String gtin) {
-        return matchesFormat(gtin, GTINFormat.GTIN_13, 0);
+        return matchesFormat(gtin, GtinFormat.GTIN_13, 0);
     }
 
     /**
@@ -236,10 +236,10 @@ public final class GTIN implements Serializable {
      * @return {@code true} if the input string is a valid GTIN string, {@code false} otherwise.
      */
     public static boolean matchesFormat14(final String gtin) {
-        return matchesFormat(gtin, GTINFormat.GTIN_14, 0);
+        return matchesFormat(gtin, GtinFormat.GTIN_14, 0);
     }
 
-    private static boolean matchesFormat(final String gtin, final GTINFormat format, final int offset) {
+    private static boolean matchesFormat(final String gtin, final GtinFormat format, final int offset) {
         if (gtin == null) {
             throw new IllegalArgumentException("gtin is null");
         }
@@ -249,7 +249,7 @@ public final class GTIN implements Serializable {
         if (format != null) {
             validLength = gtinLength == format.length();
         } else {
-            for (GTINFormat gtinFormat : GTINFormat.values()) {
+            for (GtinFormat gtinFormat : GtinFormat.values()) {
                 if (gtinLength == gtinFormat.length() - offset) {
                     validLength = true;
                     break;
@@ -266,7 +266,7 @@ public final class GTIN implements Serializable {
     /**
      * @return the format or type of this GTIN.
      */
-    public GTINFormat format() {
+    public GtinFormat format() {
         return format;
     }
 
@@ -305,10 +305,11 @@ public final class GTIN implements Serializable {
 
     @Override
     public boolean equals(final Object obj) {
-        return obj == this || obj instanceof GTIN && gtin.equals(((GTIN) obj).gtin);
+        return obj == this || obj instanceof Gtin && gtin.equals(((Gtin) obj).gtin);
     }
 
     @Override
+    @SuppressWarnings("checkstyle:magicnumber")
     public int hashCode() {
         return 37 + gtin.hashCode();
     }

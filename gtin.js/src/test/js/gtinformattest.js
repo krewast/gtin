@@ -15,51 +15,51 @@
  */
 
 QUnit.test("forLength7ShouldThrowException", function(assert) {
-    assert.throws(function() { GTINFormat.forLength(7); }, RangeError);
+    assert.throws(function() { GtinFormat.forLength(7); }, RangeError);
 });
 
-QUnit.test("forLength8ShouldReturnGTIN_8", function(assert) {
-    assert.ok(GTINFormat.GTIN_8 === GTINFormat.forLength(8));
+QUnit.test("forLength8ShouldReturnGtin8", function(assert) {
+    assert.ok(GtinFormat.GTIN_8 === GtinFormat.forLength(8));
 });
 
 QUnit.test("forLength9ShouldThrowException", function(assert) {
-    assert.throws(function() { GTINFormat.forLength(9); }, RangeError);
+    assert.throws(function() { GtinFormat.forLength(9); }, RangeError);
 });
 
 QUnit.test("forLength11ShouldThrowException", function(assert) {
-    assert.throws(function() { GTINFormat.forLength(11); }, RangeError);
+    assert.throws(function() { GtinFormat.forLength(11); }, RangeError);
 });
 
-QUnit.test("forLength12ShouldReturnGTIN_12", function(assert) {
-    assert.ok(GTINFormat.GTIN_12 == GTINFormat.forLength(12));
+QUnit.test("forLength12ShouldReturnGtin12", function(assert) {
+    assert.ok(GtinFormat.GTIN_12 == GtinFormat.forLength(12));
 });
 
-QUnit.test("forLength13ShouldReturnGTIN_13", function(assert) {
-    assert.ok(GTINFormat.GTIN_13 == GTINFormat.forLength(13));
+QUnit.test("forLength13ShouldReturnGtin13", function(assert) {
+    assert.ok(GtinFormat.GTIN_13 == GtinFormat.forLength(13));
 });
 
-QUnit.test("forLength14ShouldReturnGTIN_14", function(assert) {
-    assert.ok(GTINFormat.GTIN_14 == GTINFormat.forLength(14));
+QUnit.test("forLength14ShouldReturnGtin14", function(assert) {
+    assert.ok(GtinFormat.GTIN_14 == GtinFormat.forLength(14));
 });
 
 QUnit.test("forLength15ShouldThrowException", function(assert) {
-    assert.throws(function() { GTINFormat.forLength(15); }, RangeError);
+    assert.throws(function() { GtinFormat.forLength(15); }, RangeError);
 });
 
 QUnit.test("valueOf", function(assert) {
-    assert.ok(GTINFormat.GTIN_8 == GTINFormat.valueOf("GTIN_8"));
-    assert.ok(GTINFormat.GTIN_12 == GTINFormat.valueOf("GTIN_12"));
-    assert.ok(GTINFormat.GTIN_13 == GTINFormat.valueOf("GTIN_13"));
-    assert.ok(GTINFormat.GTIN_14 == GTINFormat.valueOf("GTIN_14"));
+    assert.ok(GtinFormat.GTIN_8 == GtinFormat.valueOf("GTIN_8"));
+    assert.ok(GtinFormat.GTIN_12 == GtinFormat.valueOf("GTIN_12"));
+    assert.ok(GtinFormat.GTIN_13 == GtinFormat.valueOf("GTIN_13"));
+    assert.ok(GtinFormat.GTIN_14 == GtinFormat.valueOf("GTIN_14"));
 });
 
 QUnit.test("valueOfUnknownValueShouldThrowException", function(assert) {
-    assert.throws(function() { GTINFormat.valueOf("GTIN_15"); });
+    assert.throws(function() { GtinFormat.valueOf("GTIN_15"); });
 });
 
 QUnit.test("toStringShouldReturnReadableNames", function(assert) {
-    assert.ok("GTIN-8" == GTINFormat.GTIN_8.toString());
-    assert.ok("GTIN-12" == GTINFormat.GTIN_12.toString());
-    assert.ok("GTIN-13" == GTINFormat.GTIN_13.toString());
-    assert.ok("GTIN-14" == GTINFormat.GTIN_14.toString());
+    assert.ok("GTIN-8" == GtinFormat.GTIN_8.toString());
+    assert.ok("GTIN-12" == GtinFormat.GTIN_12.toString());
+    assert.ok("GTIN-13" == GtinFormat.GTIN_13.toString());
+    assert.ok("GTIN-14" == GtinFormat.GTIN_14.toString());
 });

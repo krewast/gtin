@@ -9,7 +9,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 src: [
-                    'src/main/js/invalidgtinerror.js',
+                    'src/main/js/gtinformaterror.js',
                     'src/main/js/gtinformat.js',
                     'src/main/js/gtin.js',
                     'src/main/js/exports.js'

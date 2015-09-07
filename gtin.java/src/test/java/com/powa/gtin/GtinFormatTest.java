@@ -19,67 +19,67 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class GTINFormatTest {
+public class GtinFormatTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void forLength7ShouldThrowException() {
-        GTINFormat.forLength(7);
+        GtinFormat.forLength(7);
     }
 
     @Test
-    public void forLength8ShouldReturnGTIN_8() {
-        assertEquals(GTINFormat.GTIN_8, GTINFormat.forLength(8));
+    public void forLength8ShouldReturnGtin8() {
+        assertEquals(GtinFormat.GTIN_8, GtinFormat.forLength(8));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void forLength9ShouldThrowException() {
-        GTINFormat.forLength(9);
+        GtinFormat.forLength(9);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void forLength11ShouldThrowException() {
-        GTINFormat.forLength(11);
+        GtinFormat.forLength(11);
     }
 
     @Test
-    public void forLength12ShouldReturnGTIN_12() {
-        assertEquals(GTINFormat.GTIN_12, GTINFormat.forLength(12));
+    public void forLength12ShouldReturnGtin12() {
+        assertEquals(GtinFormat.GTIN_12, GtinFormat.forLength(12));
     }
 
     @Test
-    public void forLength13ShouldReturnGTIN_13() {
-        assertEquals(GTINFormat.GTIN_13, GTINFormat.forLength(13));
+    public void forLength13ShouldReturnGtin13() {
+        assertEquals(GtinFormat.GTIN_13, GtinFormat.forLength(13));
     }
 
     @Test
-    public void forLength14ShouldReturnGTIN_14() {
-        assertEquals(GTINFormat.GTIN_14, GTINFormat.forLength(14));
+    public void forLength14ShouldReturnGtin14() {
+        assertEquals(GtinFormat.GTIN_14, GtinFormat.forLength(14));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void forLength15ShouldThrowException() {
-        GTINFormat.forLength(15);
+        GtinFormat.forLength(15);
     }
 
     @Test
     public void valueOf() {
-        assertEquals(GTINFormat.GTIN_8, GTINFormat.valueOf("GTIN_8"));
-        assertEquals(GTINFormat.GTIN_12, GTINFormat.valueOf("GTIN_12"));
-        assertEquals(GTINFormat.GTIN_13, GTINFormat.valueOf("GTIN_13"));
-        assertEquals(GTINFormat.GTIN_14, GTINFormat.valueOf("GTIN_14"));
+        assertEquals(GtinFormat.GTIN_8, GtinFormat.valueOf("GTIN_8"));
+        assertEquals(GtinFormat.GTIN_12, GtinFormat.valueOf("GTIN_12"));
+        assertEquals(GtinFormat.GTIN_13, GtinFormat.valueOf("GTIN_13"));
+        assertEquals(GtinFormat.GTIN_14, GtinFormat.valueOf("GTIN_14"));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void valueOfUnknownValueShouldThrowException() {
-        GTINFormat.valueOf("GTIN_15");
+        GtinFormat.valueOf("GTIN_15");
     }
 
     @Test
     public void toStringShouldReturnReadableNames() {
-        assertEquals("GTIN-8", GTINFormat.GTIN_8.toString());
-        assertEquals("GTIN-12", GTINFormat.GTIN_12.toString());
-        assertEquals("GTIN-13", GTINFormat.GTIN_13.toString());
-        assertEquals("GTIN-14", GTINFormat.GTIN_14.toString());
+        assertEquals("GTIN-8", GtinFormat.GTIN_8.toString());
+        assertEquals("GTIN-12", GtinFormat.GTIN_12.toString());
+        assertEquals("GTIN-13", GtinFormat.GTIN_13.toString());
+        assertEquals("GTIN-14", GtinFormat.GTIN_14.toString());
     }
 
 }

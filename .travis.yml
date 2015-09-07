@@ -4,8 +4,8 @@ jdk:
   - oraclejdk7
 
 env:
+  - MODULE_DIR=gtin.java
   - MODULE_DIR=gtin.js
-  - MODULE_DIR=gtin4j
 
 install:
   - ./gradlew -q -b $MODULE_DIR/install.gradle install

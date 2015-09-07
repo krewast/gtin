@@ -15,13 +15,13 @@
  */
 
 /**
- * Enumeration of the different GTIN formats.
+ * Enumeration of the different Gtin formats.
  */
-function GTINFormat(length) {
+function GtinFormat(length) {
     "use strict";
     this.length = length;
     /**
-     * @return the name of the format, e.g. GTIN-12.
+     * @return the name of the format, e.g. Gtin-12.
      */
     this.toString = function() {
         return "GTIN-" + length.toString();
@@ -29,35 +29,35 @@ function GTINFormat(length) {
 }
 
 /**
- * GTIN-8, EAN-8. The short version of EAN-13 for extremely small products.
+ * Gtin-8, EAN-8. The short version of EAN-13 for extremely small products.
  */
-GTINFormat.GTIN_8 = new GTINFormat(8);
+GtinFormat.GTIN_8 = new GtinFormat(8);
 
 /**
- * GTIN-12, UPC-A, UPC-12. Standard version of the UPC code.
+ * Gtin-12, UPC-A, UPC-12. Standard version of the UPC code.
  */
-GTINFormat.GTIN_12 = new GTINFormat(12);
+GtinFormat.GTIN_12 = new GtinFormat(12);
 
 /**
- * GTIN-13, EAN-13. Primarily used in supermarkets to identify products at the point of sales.
+ * Gtin-13, EAN-13. Primarily used in supermarkets to identify products at the point of sales.
  */
-GTINFormat.GTIN_13 = new GTINFormat(13);
+GtinFormat.GTIN_13 = new GtinFormat(13);
 
 /**
- * GTIN-14, EAN-14. Commonly used for traded goods.
+ * Gtin-14, EAN-14. Commonly used for traded goods.
  */
-GTINFormat.GTIN_14 = new GTINFormat(14);
+GtinFormat.GTIN_14 = new GtinFormat(14);
 
 /**
  * @return an array of all of the GTINFormats.
  */
-GTINFormat.values = function() {
+GtinFormat.values = function() {
     "use strict";
     return {
-        GTIN_8: GTINFormat.GTIN_8,
-        GTIN_12: GTINFormat.GTIN_12,
-        GTIN_13: GTINFormat.GTIN_13,
-        GTIN_14: GTINFormat.GTIN_14
+        GTIN_8: GtinFormat.GTIN_8,
+        GTIN_12: GtinFormat.GTIN_12,
+        GTIN_13: GtinFormat.GTIN_13,
+        GTIN_14: GtinFormat.GTIN_14
     };
 };
 
@@ -67,8 +67,8 @@ GTINFormat.values = function() {
  * @param the name of the constant to return.
  * @return the enum constant of the specified enum type with the specified name.
  */
-GTINFormat.valueOf = function(name) {
-    var values = GTINFormat.values();
+GtinFormat.valueOf = function(name) {
+    var values = GtinFormat.values();
     for (var i in values) {
         if (i == name) {
             return values[i];
@@ -79,16 +79,16 @@ GTINFormat.valueOf = function(name) {
 };
 
 /**
- * Gets the GTIN format for the specified length.
+ * Gets the Gtin format for the specified length.
  *
- * @param gtinLength the length of the GTIN.
- * @return the GTINFormat for the given length.
+ * @param gtinLength the length of the Gtin.
+ * @return the GtinFormat for the given length.
  * @throws RangeError if the length does not match the length of any of the
  * known formats.
  */
-GTINFormat.forLength = function(gtinLength) {
+GtinFormat.forLength = function(gtinLength) {
     "use strict";
-    var values = GTINFormat.values();
+    var values = GtinFormat.values();
     for (var i in values) {
         var gtinFormat = values[i];
         if (gtinLength == gtinFormat.length) {
@@ -99,10 +99,10 @@ GTINFormat.forLength = function(gtinLength) {
             "length of any known GTIN formats");
 };
 
-// Freeze the GTINFormat object and values so they cannot be modified.
+// Freeze the GtinFormat enum object and values so they cannot be modified.
 if (Object.freeze) {
-    Object.freeze(GTINFormat);
-    var values = GTINFormat.values();
+    Object.freeze(GtinFormat);
+    var values = GtinFormat.values();
     for (var i in values) {
         var gtinFormat = values[i];
         Object.freeze(gtinFormat);

@@ -14,4 +14,21 @@
  * limitations under the License.
  */
 
-include 'gtin.java', 'gtin.js'
+/**
+ * Indicates an attempt to perform an operation on a string that is not a valid Gtin.
+ */
+function GtinFormatError(message) {
+    "use strict";
+    var error = Error.apply(this, arguments);
+    this.message = (message || null);
+    this.name = error.name = "GtinFormatError";
+    if (error.stack) {
+        this.stack = error.stack.substring(error.stack.indexOf("\n") + 1);
+    }
+    this.toString = function() {
+        return (message !== null) ? (name + ": " + message) : name;
+    };
+}
+
+// Inherit from Error
+GtinFormatError.prototype = Object.create(Error.prototype);

@@ -27,218 +27,218 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
-public class GTINTest {
+public class GtinTest {
 
     @Test
     public void stringOf7DigitsShouldNotMatchFormat() {
         String digits7 = "0123456";
 
-        assertFalse(GTIN.matchesFormat(digits7));
+        assertFalse(Gtin.matchesFormat(digits7));
     }
 
     @Test
     public void stringOf7DigitsShouldNotBeValid() {
         String digits7 = "0123456";
 
-        assertFalse(GTIN.isValid(digits7));
+        assertFalse(Gtin.isValid(digits7));
     }
 
     @Test
     public void stringOf8DigitsShouldMatchFormat() {
         String digits8 = "01234567";
 
-        assertTrue(GTIN.matchesFormat(digits8));
+        assertTrue(Gtin.matchesFormat(digits8));
     }
 
     @Test
     public void stringOf8DigitsShouldMatchFormat8() {
         String digits8 = "01234567";
 
-        assertTrue(GTIN.matchesFormat8(digits8));
+        assertTrue(Gtin.matchesFormat8(digits8));
     }
 
     @Test
     public void stringOf8DigitsShouldNotMatchFormat12() {
         String digits8 = "01234567";
 
-        assertFalse(GTIN.matchesFormat12(digits8));
+        assertFalse(Gtin.matchesFormat12(digits8));
     }
 
     @Test
     public void stringOf8LettersShouldNotMatchFormat() {
         String letters8 = "abcdefgh";
 
-        assertFalse(GTIN.matchesFormat(letters8));
+        assertFalse(Gtin.matchesFormat(letters8));
     }
 
     @Test
     public void stringOf8LettersShouldNotBeValid() {
         String letters8 = "abcdefgh";
 
-        assertFalse(GTIN.isValid(letters8));
+        assertFalse(Gtin.isValid(letters8));
     }
 
     @Test
     public void stringOf8LettersAndDigitsShouldNotMatchFormat() {
         String lettersAndDigits8 = "0a1b2c3d";
 
-        assertFalse(GTIN.matchesFormat(lettersAndDigits8));
+        assertFalse(Gtin.matchesFormat(lettersAndDigits8));
     }
 
     @Test
     public void stringOf9DigitsShouldNotMatchFormat() {
         String digits9 = "012345678";
 
-        assertFalse(GTIN.matchesFormat(digits9));
+        assertFalse(Gtin.matchesFormat(digits9));
     }
 
     @Test
     public void stringOf11DigitsShouldNotMatchFormat() {
         String digits11 = "01234567890";
 
-        assertFalse(GTIN.matchesFormat(digits11));
+        assertFalse(Gtin.matchesFormat(digits11));
     }
 
     @Test
     public void stringOf12DigitsShouldMatchFormat() {
         String digits12 = "012345678901";
 
-        assertTrue(GTIN.matchesFormat(digits12));
+        assertTrue(Gtin.matchesFormat(digits12));
     }
 
     @Test
     public void stringOf12DigitsShouldMatchFormat12() {
         String digits12 = "012345678901";
 
-        assertTrue(GTIN.matchesFormat12(digits12));
+        assertTrue(Gtin.matchesFormat12(digits12));
     }
 
     @Test
     public void stringOf12DigitsShouldNotMatchFormat13() {
         String digits12 = "012345678901";
 
-        assertFalse(GTIN.matchesFormat13(digits12));
+        assertFalse(Gtin.matchesFormat13(digits12));
     }
 
     @Test
     public void stringOf12LettersShouldNotMatchFormat() {
         String letters12 = "abcdefghijkl";
 
-        assertFalse(GTIN.matchesFormat(letters12));
+        assertFalse(Gtin.matchesFormat(letters12));
     }
 
     @Test
     public void stringOf12LettersAndDigitsShouldNotMatchFormat() {
         String lettersAndDigits12 = "0a1b2c3d4e5f6g";
 
-        assertFalse(GTIN.matchesFormat(lettersAndDigits12));
+        assertFalse(Gtin.matchesFormat(lettersAndDigits12));
     }
 
     @Test
     public void stringOf13DigitsShouldMatchFormat() {
         String digits13 = "0123456789012";
 
-        assertTrue(GTIN.matchesFormat(digits13));
+        assertTrue(Gtin.matchesFormat(digits13));
     }
 
     @Test
     public void stringOf13DigitsShouldMatchFormat13() {
         String digits13 = "0123456789012";
 
-        assertTrue(GTIN.matchesFormat13(digits13));
+        assertTrue(Gtin.matchesFormat13(digits13));
     }
 
     @Test
     public void stringOf13DigitsShouldNotMatchFormat14() {
         String digits13 = "0123456789012";
 
-        assertFalse(GTIN.matchesFormat14(digits13));
+        assertFalse(Gtin.matchesFormat14(digits13));
     }
 
     @Test
     public void stringOf13LettersShouldNotMatchFormat() {
         String letters13 = "abcdefghijklm";
 
-        assertFalse(GTIN.matchesFormat(letters13));
+        assertFalse(Gtin.matchesFormat(letters13));
     }
 
     @Test
     public void stringOf13LettersAndDigitsShouldNotMatchFormat() {
         String lettersAndDigits13 = "0a1b2c3d4e5f6g7";
 
-        assertFalse(GTIN.matchesFormat(lettersAndDigits13));
+        assertFalse(Gtin.matchesFormat(lettersAndDigits13));
     }
 
     @Test
     public void stringOf14DigitsShouldMatchFormat() {
         String digits14 = "01234567890123";
 
-        assertTrue(GTIN.matchesFormat(digits14));
+        assertTrue(Gtin.matchesFormat(digits14));
     }
 
     @Test
     public void stringOf14DigitsShouldMatchFormat14() {
         String digits14 = "01234567890123";
 
-        assertTrue(GTIN.matchesFormat14(digits14));
+        assertTrue(Gtin.matchesFormat14(digits14));
     }
 
     @Test
     public void stringOf14DigitsShouldMatchGtinFormat14() {
         String digits14 = "01234567890123";
 
-        assertTrue(GTIN.matchesFormat(digits14, GTINFormat.GTIN_14));
+        assertTrue(Gtin.matchesFormat(digits14, GtinFormat.GTIN_14));
     }
 
     @Test
     public void stringOf14DigitsShouldNotMatchFormat13() {
         String digits14 = "01234567890123";
 
-        assertFalse(GTIN.matchesFormat13(digits14));
+        assertFalse(Gtin.matchesFormat13(digits14));
     }
 
     @Test
     public void stringOf14LettersShouldNotMatchFormat() {
         String letters14 = "abcdefghijklmn";
 
-        assertFalse(GTIN.matchesFormat(letters14));
+        assertFalse(Gtin.matchesFormat(letters14));
     }
 
     @Test
     public void stringOf14LettersAndDigitsShouldNotMatchFormat() {
         String lettersAndDigits14 = "0a1b2c3d4e5f6g7h";
 
-        assertFalse(GTIN.matchesFormat(lettersAndDigits14));
+        assertFalse(Gtin.matchesFormat(lettersAndDigits14));
     }
 
     @Test
     public void stringOf15DigitsShouldNotMatchFormat() {
         String digits15 = "012345678901234";
 
-        assertFalse(GTIN.matchesFormat(digits15));
+        assertFalse(Gtin.matchesFormat(digits15));
     }
 
     @Test
     public void gtin8ShouldBeValid() {
         String gtin8 = "73513537";
 
-        assertTrue(GTIN.isValid(gtin8));
+        assertTrue(Gtin.isValid(gtin8));
     }
 
     @Test
     public void gtin8ShouldBeValid8() {
         String gtin8 = "03485736";
 
-        assertTrue(GTIN.isValid8(gtin8));
+        assertTrue(Gtin.isValid8(gtin8));
     }
 
     @Test
     public void gtin8ShouldParseToGTIN() {
         String gtin8 = "03485736";
 
-        GTIN gtin = GTIN.create(gtin8);
+        Gtin gtin = Gtin.create(gtin8);
 
-        assertEquals(GTINFormat.GTIN_8, gtin.format());
+        assertEquals(GtinFormat.GTIN_8, gtin.format());
         assertEquals(8, gtin.length());
         assertEquals(gtin8, gtin.toString());
     }
@@ -247,37 +247,37 @@ public class GTINTest {
     public void gtin8WithInvalidCheckDigitShouldNotBeValid() {
         String badGtin8 = "73513536";
 
-        assertFalse(GTIN.isValid(badGtin8));
+        assertFalse(Gtin.isValid(badGtin8));
     }
 
-    @Test(expected = InvalidGTINException.class)
+    @Test(expected = GtinFormatException.class)
     public void gtin8WithInvalidCheckDigitShouldNotParseToGTIN() {
         String badGtin8 = "73513536";
 
-        GTIN.create(badGtin8);
+        Gtin.create(badGtin8);
     }
 
     @Test
     public void gtin12ShouldBeValid() {
         String gtin12 = "123456789012";
 
-        assertTrue(GTIN.isValid(gtin12));
+        assertTrue(Gtin.isValid(gtin12));
     }
 
     @Test
     public void gtin12ShouldBeValid12() {
         String gtin12 = "734092309436";
 
-        assertTrue(GTIN.isValid12(gtin12));
+        assertTrue(Gtin.isValid12(gtin12));
     }
 
     @Test
     public void gtin12ShouldParseToGTIN() {
         String gtin12 = "734092309436";
 
-        GTIN gtin = GTIN.create(gtin12);
+        Gtin gtin = Gtin.create(gtin12);
 
-        assertEquals(GTINFormat.GTIN_12, gtin.format());
+        assertEquals(GtinFormat.GTIN_12, gtin.format());
         assertEquals(12, gtin.length());
         assertEquals(gtin12, gtin.toString());
     }
@@ -286,44 +286,44 @@ public class GTINTest {
     public void gtin12WithInvalidCheckDigitShouldNotBeValid() {
         String badGtin12 = "123456789010";
 
-        assertFalse(GTIN.isValid(badGtin12));
+        assertFalse(Gtin.isValid(badGtin12));
     }
 
-    @Test(expected = InvalidGTINException.class)
+    @Test(expected = GtinFormatException.class)
     public void gtin12WithInvalidCheckDigitShouldNotParseToGTIN() {
         String badGtin12 = "123456789010";
 
-        GTIN.create(badGtin12);
+        Gtin.create(badGtin12);
     }
 
     @Test
     public void gtin13ShouldBeValid() {
         String gtin13 = "4006381333931";
 
-        assertTrue(GTIN.isValid(gtin13));
+        assertTrue(Gtin.isValid(gtin13));
     }
 
     @Test
     public void gtin13ShouldBeValid13() {
         String gtin13 = "0234248273487";
 
-        assertTrue(GTIN.isValid13(gtin13));
+        assertTrue(Gtin.isValid13(gtin13));
     }
 
     @Test
     public void gtin13ShouldNotBeValid14() {
         String gtin13 = "0234248273487";
 
-        assertFalse(GTIN.isValid14(gtin13));
+        assertFalse(Gtin.isValid14(gtin13));
     }
 
     @Test
     public void gtin13ShouldParseToGTIN() {
         String gtin13 = "0234248273487";
 
-        GTIN gtin = GTIN.create(gtin13);
+        Gtin gtin = Gtin.create(gtin13);
 
-        assertEquals(GTINFormat.GTIN_13, gtin.format());
+        assertEquals(GtinFormat.GTIN_13, gtin.format());
         assertEquals(13, gtin.length());
         assertEquals(gtin13, gtin.toString());
     }
@@ -332,44 +332,44 @@ public class GTINTest {
     public void gtin13WithInvalidCheckDigitShouldNotBeValid() {
         String badGtin13 = "4006381333932";
 
-        assertFalse(GTIN.isValid(badGtin13));
+        assertFalse(Gtin.isValid(badGtin13));
     }
 
-    @Test(expected = InvalidGTINException.class)
+    @Test(expected = GtinFormatException.class)
     public void gtin13WithInvalidCheckDigitShouldNotParseToGTIN() {
         String badGtin13 = "4006381333932";
 
-        GTIN.create(badGtin13);
+        Gtin.create(badGtin13);
     }
 
     @Test
     public void gtin14ShouldBeValid() {
         String gtin14 = "10614141000415";
 
-        assertTrue(GTIN.isValid(gtin14));
+        assertTrue(Gtin.isValid(gtin14));
     }
 
     @Test
     public void gtin14ShouldBeValid14() {
         String gtin14 = "34957354738950";
 
-        assertTrue(GTIN.isValid14(gtin14));
+        assertTrue(Gtin.isValid14(gtin14));
     }
 
     @Test
     public void gtin14ShouldNotBeValid8() {
         String gtin14 = "34957354738950";
 
-        assertFalse(GTIN.isValid8(gtin14));
+        assertFalse(Gtin.isValid8(gtin14));
     }
 
     @Test
     public void gtin14ShouldParseToGTIN() {
         String gtin14 = "10614141000415";
 
-        GTIN gtin = GTIN.create(gtin14);
+        Gtin gtin = Gtin.create(gtin14);
 
-        assertEquals(GTINFormat.GTIN_14, gtin.format());
+        assertEquals(GtinFormat.GTIN_14, gtin.format());
         assertEquals(14, gtin.length());
         assertEquals(gtin14, gtin.toString());
     }
@@ -378,20 +378,20 @@ public class GTINTest {
     public void gtin14WithInvalidCheckDigitShouldNotBeValid() {
         String badGtin14 = "10614141000416";
 
-        assertFalse(GTIN.isValid(badGtin14));
+        assertFalse(Gtin.isValid(badGtin14));
     }
 
-    @Test(expected = InvalidGTINException.class)
+    @Test(expected = GtinFormatException.class)
     public void gtin14WithInvalidCheckDigitShouldNotParseToGTIN() {
         String badGtin14 = "10614141000416";
 
-        GTIN.create(badGtin14);
+        Gtin.create(badGtin14);
     }
 
     @Test
     public void gtinShouldBeEqualToItself() throws Exception {
         String gtin14 = "10614141000415";
-        GTIN gtin = GTIN.create(gtin14);
+        Gtin gtin = Gtin.create(gtin14);
 
         assertTrue(gtin.equals(gtin));
     }
@@ -399,8 +399,8 @@ public class GTINTest {
     @Test
     public void sameGtinsShouldBeEqual() throws Exception {
         String gtin14 = "10614141000415";
-        GTIN gtin1 = GTIN.create(gtin14);
-        GTIN gtin2 = GTIN.create(gtin14);
+        Gtin gtin1 = Gtin.create(gtin14);
+        Gtin gtin2 = Gtin.create(gtin14);
 
         assertTrue(gtin1.equals(gtin2));
         assertTrue(gtin2.equals(gtin1));
@@ -410,8 +410,8 @@ public class GTINTest {
     public void differentGtinsShouldNotBeEqual() throws Exception {
         String gtin13 = "0234248273487";
         String gtin14 = "10614141000415";
-        GTIN gtin1 = GTIN.create(gtin14);
-        GTIN gtin2 = GTIN.create(gtin13);
+        Gtin gtin1 = Gtin.create(gtin14);
+        Gtin gtin2 = Gtin.create(gtin13);
 
         assertFalse(gtin1.equals(gtin2));
         assertFalse(gtin2.equals(gtin1));
@@ -420,16 +420,16 @@ public class GTINTest {
     @Test
     public void gtinShouldNotBeEqualToObjectOfDifferentType() throws Exception {
         String gtin14 = "10614141000415";
-        GTIN gtin = GTIN.create(gtin14);
+        Gtin gtin = Gtin.create(gtin14);
 
         assertFalse(gtin.equals(gtin14));
-        assertFalse(gtin.equals(true));
+        assertFalse(gtin.equals(new Object()));
     }
 
     @Test
     public void gtinHashCodeShouldBeConstant() throws Exception {
         String gtin14 = "10614141000415";
-        GTIN gtin = GTIN.create(gtin14);
+        Gtin gtin = Gtin.create(gtin14);
 
         int hashCode1 = gtin.hashCode();
         int hashCode2 = gtin.hashCode();
@@ -440,16 +440,16 @@ public class GTINTest {
     @Test
     public void sameGtinsShouldHaveEqualHashCodes() throws Exception {
         String gtin14 = "10614141000415";
-        GTIN gtin1 = GTIN.create(gtin14);
-        GTIN gtin2 = GTIN.create(gtin14);
+        Gtin gtin1 = Gtin.create(gtin14);
+        Gtin gtin2 = Gtin.create(gtin14);
 
         assertEquals(gtin1.hashCode(), gtin2.hashCode());
     }
 
     @Test
     public void differentGtinsShouldHaveUnequalHashCodesIfPossible() throws Exception {
-        GTIN gtin1 = GTIN.create("10614141000415");
-        GTIN gtin2 = GTIN.create("34957354738950");
+        Gtin gtin1 = Gtin.create("10614141000415");
+        Gtin gtin2 = Gtin.create("34957354738950");
 
         assertNotEquals(gtin1.hashCode(), gtin2.hashCode());
     }
@@ -458,7 +458,7 @@ public class GTINTest {
     public void gtin8CalculatedCheckDigitShouldBeCorrect() {
         String partialGtin8 = "7351353";
 
-        int checkDigit = GTIN.calculateCheckDigit(partialGtin8);
+        int checkDigit = Gtin.calculateCheckDigit(partialGtin8);
 
         assertEquals(7, checkDigit);
     }
@@ -467,7 +467,7 @@ public class GTINTest {
     public void gtin12CalculatedCheckDigitShouldBeCorrect() {
         String partialGtin12 = "73409230943";
 
-        int checkDigit = GTIN.calculateCheckDigit(partialGtin12);
+        int checkDigit = Gtin.calculateCheckDigit(partialGtin12);
 
         assertEquals(6, checkDigit);
     }
@@ -476,7 +476,7 @@ public class GTINTest {
     public void gtin13CalculatedCheckDigitShouldBeCorrect() {
         String partialGtin13 = "295248972349";
 
-        int checkDigit = GTIN.calculateCheckDigit(partialGtin13);
+        int checkDigit = Gtin.calculateCheckDigit(partialGtin13);
 
         assertEquals(0, checkDigit);
     }
@@ -485,7 +485,7 @@ public class GTINTest {
     public void gtin14CalculatedCheckDigitShouldBeCorrect() {
         String partialGtin14 = "1061414100041";
 
-        int checkDigit = GTIN.calculateCheckDigit(partialGtin14);
+        int checkDigit = Gtin.calculateCheckDigit(partialGtin14);
 
         assertEquals(5, checkDigit);
     }
@@ -494,30 +494,30 @@ public class GTINTest {
     public void gtin8WithCheckDigitShouldBeCorrect() {
         String partialGtin8 = "7351353";
 
-        String gtin8 = GTIN.withCheckDigit(partialGtin8);
+        String gtin8 = Gtin.withCheckDigit(partialGtin8);
 
         assertEquals("73513537", gtin8);
     }
 
-    @Test(expected = InvalidGTINException.class)
+    @Test(expected = GtinFormatException.class)
     public void stringOfLettersCheckDigitShouldThrowException() {
         String letters8 = "abcdefgh";
 
-        GTIN.calculateCheckDigit(letters8);
+        Gtin.calculateCheckDigit(letters8);
     }
 
-    @Test(expected = InvalidGTINException.class)
+    @Test(expected = GtinFormatException.class)
     public void stringOfLettersWithCheckDigitShouldThrowException() {
         String letters8 = "abcdefgh";
 
-        GTIN.withCheckDigit(letters8);
+        Gtin.withCheckDigit(letters8);
     }
 
     @Test
     public void gtin12WithCheckDigitShouldBeCorrect() {
         String partialGtin12 = "73409230943";
 
-        String gtin12 = GTIN.withCheckDigit(partialGtin12);
+        String gtin12 = Gtin.withCheckDigit(partialGtin12);
 
         assertEquals("734092309436", gtin12);
     }
@@ -526,7 +526,7 @@ public class GTINTest {
     public void gtin13WithCheckDigitShouldBeCorrect() {
         String partialGtin13 = "023424827348";
 
-        String gtin13 = GTIN.withCheckDigit(partialGtin13);
+        String gtin13 = Gtin.withCheckDigit(partialGtin13);
 
         assertEquals("0234248273487", gtin13);
     }
@@ -535,7 +535,7 @@ public class GTINTest {
     public void gtin14WithCheckDigitShouldBeCorrect() {
         String partialGtin14 = "1061414100041";
 
-        String gtin14 = GTIN.withCheckDigit(partialGtin14);
+        String gtin14 = Gtin.withCheckDigit(partialGtin14);
 
         assertEquals("10614141000415", gtin14);
     }
@@ -544,7 +544,7 @@ public class GTINTest {
     public void gtin14CreateWithCheckDigitShouldBeCorrect() {
         String partialGtin14 = "1061414100041";
 
-        GTIN gtin14 = GTIN.createWithCheckDigit(partialGtin14);
+        Gtin gtin14 = Gtin.createWithCheckDigit(partialGtin14);
 
         assertEquals("10614141000415", gtin14.toString());
     }
@@ -552,7 +552,7 @@ public class GTINTest {
     @Test
     public void gtin14CheckDigitShouldBeCorrect() {
         String gtin14 = "10614141000415";
-        GTIN gtin = GTIN.create(gtin14);
+        Gtin gtin = Gtin.create(gtin14);
 
         assertEquals(5, gtin.checkDigit());
     }
@@ -560,7 +560,7 @@ public class GTINTest {
     @Test
     public void gtinDigitAtShouldBeCorrect() {
         String gtin14 = "10614141000415";
-        GTIN gtin = GTIN.create(gtin14);
+        Gtin gtin = Gtin.create(gtin14);
 
         assertEquals(1, gtin.digitAt(0));
         assertEquals(0, gtin.digitAt(1));
@@ -571,34 +571,34 @@ public class GTINTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void validateNullShouldThrowException() {
-        GTIN.isValid(null);
+        Gtin.isValid(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void calculateCheckDigitNullShouldThrowException() {
-        GTIN.calculateCheckDigit(null);
+        Gtin.calculateCheckDigit(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void withNullCheckDigitShouldThrowException() {
-        GTIN.withCheckDigit(null);
+        Gtin.withCheckDigit(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void createNullShouldThrowException() {
-        GTIN.create(null);
+        Gtin.create(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void createWithNullCheckDigitShouldThrowException() {
-        GTIN.createWithCheckDigit(null);
+        Gtin.createWithCheckDigit(null);
     }
 
     @Test
     public void gtinAndDeserializedGtinShouldBeEqual() throws Exception {
         String gtin14 = "10614141000415";
 
-        GTIN gtin = GTIN.create(gtin14);
+        Gtin gtin = Gtin.create(gtin14);
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(buffer);
         oos.writeObject(gtin);
@@ -606,7 +606,7 @@ public class GTINTest {
         oos.close();
         ByteArrayInputStream in = new ByteArrayInputStream(buffer.toByteArray());
         ObjectInputStream ois = new ObjectInputStream(in);
-        GTIN deserializedGtin = (GTIN) ois.readObject();
+        Gtin deserializedGtin = (Gtin) ois.readObject();
 
         assertEquals(gtin, deserializedGtin);
         assertEquals(gtin.toString(), deserializedGtin.toString());

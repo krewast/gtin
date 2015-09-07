@@ -15,13 +15,13 @@
  */
 
 /**
- * Indicates an attempt to perform an operation on a string that is not a valid GTIN.
+ * Indicates an attempt to perform an operation on a string that is not a valid Gtin.
  */
-function InvalidGTINError(message) {
+function GtinFormatError(message) {
     "use strict";
     var error = Error.apply(this, arguments);
     this.message = (message || null);
-    this.name = error.name = "InvalidGTINError";
+    this.name = error.name = "GtinFormatError";
     if (error.stack) {
         this.stack = error.stack.substring(error.stack.indexOf("\n") + 1);
     }
@@ -31,7 +31,7 @@ function InvalidGTINError(message) {
 }
 
 // Inherit from Error
-InvalidGTINError.prototype = Object.create(Error.prototype);
+GtinFormatError.prototype = Object.create(Error.prototype);
 ;/**
  * Copyright (C) 2015 Powa Technologies Ltd.
  *
@@ -49,13 +49,13 @@ InvalidGTINError.prototype = Object.create(Error.prototype);
  */
 
 /**
- * Enumeration of the different GTIN formats.
+ * Enumeration of the different Gtin formats.
  */
-function GTINFormat(length) {
+function GtinFormat(length) {
     "use strict";
     this.length = length;
     /**
-     * @return the name of the format, e.g. GTIN-12.
+     * @return the name of the format, e.g. Gtin-12.
      */
     this.toString = function() {
         return "GTIN-" + length.toString();
@@ -63,35 +63,35 @@ function GTINFormat(length) {
 }
 
 /**
- * GTIN-8, EAN-8. The short version of EAN-13 for extremely small products.
+ * Gtin-8, EAN-8. The short version of EAN-13 for extremely small products.
  */
-GTINFormat.GTIN_8 = new GTINFormat(8);
+GtinFormat.GTIN_8 = new GtinFormat(8);
 
 /**
- * GTIN-12, UPC-A, UPC-12. Standard version of the UPC code.
+ * Gtin-12, UPC-A, UPC-12. Standard version of the UPC code.
  */
-GTINFormat.GTIN_12 = new GTINFormat(12);
+GtinFormat.GTIN_12 = new GtinFormat(12);
 
 /**
- * GTIN-13, EAN-13. Primarily used in supermarkets to identify products at the point of sales.
+ * Gtin-13, EAN-13. Primarily used in supermarkets to identify products at the point of sales.
  */
-GTINFormat.GTIN_13 = new GTINFormat(13);
+GtinFormat.GTIN_13 = new GtinFormat(13);
 
 /**
- * GTIN-14, EAN-14. Commonly used for traded goods.
+ * Gtin-14, EAN-14. Commonly used for traded goods.
  */
-GTINFormat.GTIN_14 = new GTINFormat(14);
+GtinFormat.GTIN_14 = new GtinFormat(14);
 
 /**
  * @return an array of all of the GTINFormats.
  */
-GTINFormat.values = function() {
+GtinFormat.values = function() {
     "use strict";
     return {
-        GTIN_8: GTINFormat.GTIN_8,
-        GTIN_12: GTINFormat.GTIN_12,
-        GTIN_13: GTINFormat.GTIN_13,
-        GTIN_14: GTINFormat.GTIN_14
+        GTIN_8: GtinFormat.GTIN_8,
+        GTIN_12: GtinFormat.GTIN_12,
+        GTIN_13: GtinFormat.GTIN_13,
+        GTIN_14: GtinFormat.GTIN_14
     };
 };
 
@@ -101,8 +101,8 @@ GTINFormat.values = function() {
  * @param the name of the constant to return.
  * @return the enum constant of the specified enum type with the specified name.
  */
-GTINFormat.valueOf = function(name) {
-    var values = GTINFormat.values();
+GtinFormat.valueOf = function(name) {
+    var values = GtinFormat.values();
     for (var i in values) {
         if (i == name) {
             return values[i];
@@ -113,16 +113,16 @@ GTINFormat.valueOf = function(name) {
 };
 
 /**
- * Gets the GTIN format for the specified length.
+ * Gets the Gtin format for the specified length.
  *
- * @param gtinLength the length of the GTIN.
- * @return the GTINFormat for the given length.
+ * @param gtinLength the length of the Gtin.
+ * @return the GtinFormat for the given length.
  * @throws RangeError if the length does not match the length of any of the
  * known formats.
  */
-GTINFormat.forLength = function(gtinLength) {
+GtinFormat.forLength = function(gtinLength) {
     "use strict";
-    var values = GTINFormat.values();
+    var values = GtinFormat.values();
     for (var i in values) {
         var gtinFormat = values[i];
         if (gtinLength == gtinFormat.length) {
@@ -133,10 +133,10 @@ GTINFormat.forLength = function(gtinLength) {
             "length of any known GTIN formats");
 };
 
-// Freeze the GTINFormat object and values so they cannot be modified.
+// Freeze the GtinFormat enum object and values so they cannot be modified.
 if (Object.freeze) {
-    Object.freeze(GTINFormat);
-    var values = GTINFormat.values();
+    Object.freeze(GtinFormat);
+    var values = GtinFormat.values();
     for (var i in values) {
         var gtinFormat = values[i];
         Object.freeze(gtinFormat);
@@ -162,10 +162,10 @@ if (Object.freeze) {
  * Valid GTIN code. Static methods are provided for identifying, validating and parsing GTIN codes
  * represented as strings.
  */
-function GTIN(gtin) {
+function Gtin(gtin) {
     "use strict";
     this.gtin = gtin;
-    this.format = GTINFormat.forLength(gtin.length);
+    this.format = GtinFormat.forLength(gtin.length);
     this.length = this.format.length;
 
     /**
@@ -194,14 +194,14 @@ function GTIN(gtin) {
     };
 
     this.equals = function(obj) {
-        return obj === this || obj instanceof GTIN && gtin === obj.gtin;
+        return obj === this || obj instanceof Gtin && gtin === obj.gtin;
     };
 
     this.hashCode = function() {
         var stringHashCode = function(str){
             var hash = 0;
             for (i = 0; i < str.length; i++) {
-                char = str.charCodeAt(i);
+                var char = str.charCodeAt(i);
                 hash = ((hash << 5) - hash) + char;
                 // Convert to 32bit integer
                 hash = hash & hash;
@@ -216,19 +216,19 @@ function GTIN(gtin) {
 /**
  * Creates a GTIN from the given string.
  * You may use the {@link #isValid(String)} method first if you are unsure whether the
- * string is a valid GTIN to avoid.
+ * string is a valid GTIN to avoid a GtinFormatError being thrown.
  *
  * @param gtin the GTIN string.
- * @return a GTIN object if the string is a valid GTIN.
- * @throws InvalidGTINError if the string is not a valid GTIN.
+ * @return a Gtin object if the string is a valid GTIN.
+ * @throws GtinFormatError if the string is not a valid GTIN.
  */
 
-GTIN.create = function(gtin) {
+Gtin.create = function(gtin) {
     "use strict";
-    if (!GTIN.isValid(gtin)) {
-        throw new InvalidGTINError("String '" + gtin + "' is not a valid gtin");
+    if (!Gtin.isValid(gtin)) {
+        throw new GtinFormatError("String '" + gtin + "' is not a valid gtin");
     }
-    var result = new GTIN(gtin);
+    var result = new Gtin(gtin);
     // Make sure length and format etc cannot be modified
     if (Object.freeze) {
         Object.freeze(result);
@@ -240,12 +240,12 @@ GTIN.create = function(gtin) {
  * Creates a GTIN from the given partial GTIN string without the check digit.
  *
  * @param gtinWithoutCheckDigit the GTIN without the final check digit.
- * @return a GTIN object if the string is a valid GTIN.
- * @throws InvalidGTINError if the string is not a valid partial GTIN.
+ * @return a GTIN object if the string is a valid GITN.
+ * @throws GtinFormatError if the string is not a valid partial GTIN.
  */
-GTIN.createWithCheckDigit = function(gtinWithoutCheckDigit) {
+Gtin.createWithCheckDigit = function(gtinWithoutCheckDigit) {
     "use strict";
-    return new GTIN(GTIN.withCheckDigit(gtinWithoutCheckDigit));
+    return new Gtin(Gtin.withCheckDigit(gtinWithoutCheckDigit));
 };
 
 /**
@@ -257,10 +257,10 @@ GTIN.createWithCheckDigit = function(gtinWithoutCheckDigit) {
  * any format.
  * @return {@code true} if the GTIN is valid, {@code false} otherwise.
  */
-GTIN.isValid = function(gtin, format) {
+Gtin.isValid = function(gtin, format) {
     "use strict";
     // Check format of barcode for validity
-    if (!GTIN.matchesFormat(gtin)) {
+    if (!Gtin.matchesFormat(gtin)) {
         return false;
     }
     var gtinLength = gtin.length;
@@ -282,9 +282,9 @@ GTIN.isValid = function(gtin, format) {
  * @param gtin the GTIN-8 string to check.
  * @return {@code true} if the GTIN is valid, {@code false} otherwise.
  */
-GTIN.isValid8 = function(gtin) {
+Gtin.isValid8 = function(gtin) {
     "use strict";
-    return GTIN.isValid(gtin, GTINFormat.GTIN_8);
+    return Gtin.isValid(gtin, GtinFormat.GTIN_8);
 };
 
 /**
@@ -293,9 +293,9 @@ GTIN.isValid8 = function(gtin) {
  * @param gtin the GTIN-12 string to check.
  * @return {@code true} if the GTIN is valid, {@code false} otherwise.
  */
-GTIN.isValid12 = function(gtin) {
+Gtin.isValid12 = function(gtin) {
     "use strict";
-    return GTIN.isValid(gtin, GTINFormat.GTIN_12);
+    return Gtin.isValid(gtin, GtinFormat.GTIN_12);
 };
 
 /**
@@ -304,9 +304,9 @@ GTIN.isValid12 = function(gtin) {
  * @param gtin the GTIN-13 string to check.
  * @return {@code true} if the GTIN is valid, {@code false} otherwise.
  */
-GTIN.isValid13 = function(gtin) {
+Gtin.isValid13 = function(gtin) {
     "use strict";
-    return GTIN.isValid(gtin, GTINFormat.GTIN_13);
+    return Gtin.isValid(gtin, GtinFormat.GTIN_13);
 };
 
 /**
@@ -315,9 +315,9 @@ GTIN.isValid13 = function(gtin) {
  * @param gtin the GTIN-14 string to check.
  * @return {@code true} if the GTIN is valid, {@code false} otherwise.
  */
-GTIN.isValid14 = function(gtin) {
+Gtin.isValid14 = function(gtin) {
     "use strict";
-    return GTIN.isValid(gtin, GTINFormat.GTIN_14);
+    return Gtin.isValid(gtin, GtinFormat.GTIN_14);
 };
 
 /**
@@ -325,13 +325,13 @@ GTIN.isValid14 = function(gtin) {
  *
  * @param gtinWithoutCheckDigit the GTIN without the final check digit.
  * @return the check digit to complete the GTIN code.
- * @throws InvalidGTINError if the string is not a valid partial GTIN without the check
+ * @throws GtinFormatError if the string is not a valid partial GTIN without the check
  * digit.
  */
-GTIN.calculateCheckDigit = function(gtinWithoutCheckDigit) {
+Gtin.calculateCheckDigit = function(gtinWithoutCheckDigit) {
     "use strict";
-    if (!GTIN.matchesFormat(gtinWithoutCheckDigit, null, 1)) {
-        throw new InvalidGTINError("String '" + gtinWithoutCheckDigit + "' is not a valid partial gtin");
+    if (!Gtin.matchesFormat(gtinWithoutCheckDigit, null, 1)) {
+        throw new GtinFormatError("String '" + gtinWithoutCheckDigit + "' is not a valid partial gtin");
     }
     var checkSum = 0;
     var gtinLength = gtinWithoutCheckDigit.length;
@@ -348,17 +348,17 @@ GTIN.calculateCheckDigit = function(gtinWithoutCheckDigit) {
  *
  * @param gtinWithoutCheckDigit the GTIN without the final check digit.
  * @return the GTIN code with check digit.
- * @throws InvalidGTINError if the string is not a valid partial GTIN without the check
+ * @throws GtinFormatError if the string is not a valid partial GTIN without the check
  * digit.
  */
-GTIN.withCheckDigit = function(gtinWithoutCheckDigit) {
+Gtin.withCheckDigit = function(gtinWithoutCheckDigit) {
     "use strict";
-    return gtinWithoutCheckDigit + GTIN.calculateCheckDigit(gtinWithoutCheckDigit).toString();
+    return gtinWithoutCheckDigit + Gtin.calculateCheckDigit(gtinWithoutCheckDigit).toString();
 };
 
 /**
  * Checks whether the input string matches the specific GTIN format, i.e. is of the correct
- * length that format GTIN and that the string contains only digits.
+ * length that format Gtin and that the string contains only digits.
  *
  * @param gtin the possible GTIN string.
  * @param format optional, the GTIN format to check the string against.
@@ -366,7 +366,7 @@ GTIN.withCheckDigit = function(gtinWithoutCheckDigit) {
  * @return {@code true} if the input string is a valid GTIN string, {@code false} otherwise.
  */
 // Private method
-GTIN.matchesFormat = function(gtin, format, offset) {
+Gtin.matchesFormat = function(gtin, format, offset) {
     "use strict";
     if (typeof gtin === "undefined" ||gtin === null) {
         throw new Error("gtin is null");
@@ -380,7 +380,7 @@ GTIN.matchesFormat = function(gtin, format, offset) {
     if (typeof format !== "undefined" && format !== null) {
         validLength = gtinLength == format.length;
     } else {
-        var values = GTINFormat.values();
+        var values = GtinFormat.values();
         for (var i in values) {
             var gtinFormat = values[i];
             if (gtinLength == gtinFormat.length - offset) {
@@ -403,9 +403,9 @@ GTIN.matchesFormat = function(gtin, format, offset) {
  * @param gtin the possible GTIN string.
  * @return {@code true} if the input string is a valid GTIN string, {@code false} otherwise.
  */
-GTIN.matchesFormat8 = function(gtin) {
+Gtin.matchesFormat8 = function(gtin) {
     "use strict";
-    return GTIN.matchesFormat(gtin, GTINFormat.GTIN_8, 0);
+    return Gtin.matchesFormat(gtin, GtinFormat.GTIN_8, 0);
 };
 
 /**
@@ -415,9 +415,9 @@ GTIN.matchesFormat8 = function(gtin) {
  * @param gtin the possible GTIN string.
  * @return {@code true} if the input string is a valid GTIN string, {@code false} otherwise.
  */
-GTIN.matchesFormat12 = function(gtin) {
+Gtin.matchesFormat12 = function(gtin) {
     "use strict";
-    return GTIN.matchesFormat(gtin, GTINFormat.GTIN_12, 0);
+    return Gtin.matchesFormat(gtin, GtinFormat.GTIN_12, 0);
 };
 
 /**
@@ -427,9 +427,9 @@ GTIN.matchesFormat12 = function(gtin) {
  * @param gtin the possible GTIN string.
  * @return {@code true} if the input string is a valid GTIN string, {@code false} otherwise.
  */
-GTIN.matchesFormat13 = function(gtin) {
+Gtin.matchesFormat13 = function(gtin) {
     "use strict";
-    return GTIN.matchesFormat(gtin, GTINFormat.GTIN_13, 0);
+    return Gtin.matchesFormat(gtin, GtinFormat.GTIN_13, 0);
 };
 
 /**
@@ -439,9 +439,9 @@ GTIN.matchesFormat13 = function(gtin) {
  * @param gtin the possible GTIN string.
  * @return {@code true} if the input string is a valid GTIN string, {@code false} otherwise.
  */
-GTIN.matchesFormat14 = function(gtin) {
+Gtin.matchesFormat14 = function(gtin) {
     "use strict";
-    return GTIN.matchesFormat(gtin, GTINFormat.GTIN_14, 0);
+    return Gtin.matchesFormat(gtin, GtinFormat.GTIN_14, 0);
 };
 ;/**
  * Copyright (C) 2015 Powa Technologies Ltd.
@@ -475,8 +475,8 @@ GTIN.matchesFormat14 = function(gtin) {
   }
 }(this, function() {
     return {
-        GTIN: GTIN,
-        GTINFormat: GTINFormat,
-        InvalidGTINError: InvalidGTINError
+        GTIN: Gtin,
+        GTINFormat: GtinFormat,
+        InvalidGTINError: GtinFormatError
     };
 }));

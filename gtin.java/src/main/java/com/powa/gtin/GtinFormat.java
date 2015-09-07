@@ -18,7 +18,7 @@ package com.powa.gtin;
 /**
  * Enumeration of the different GTIN formats.
  */
-public enum GTINFormat {
+public enum GtinFormat {
 
     /**
      * GTIN-8, EAN-8. The short version of EAN-13 for extremely small products.
@@ -42,7 +42,7 @@ public enum GTINFormat {
 
     private final int length;
 
-    GTINFormat(final int length) {
+    GtinFormat(final int length) {
         this.length = length;
     }
 
@@ -54,14 +54,14 @@ public enum GTINFormat {
      * @throws IllegalArgumentException if the length does not match the length of any of the
      * known formats.
      */
-    public static GTINFormat forLength(final int gtinLength) {
-        for (GTINFormat gtinFormat : GTINFormat.values()) {
+    public static GtinFormat forLength(final int gtinLength) {
+        for (GtinFormat gtinFormat : GtinFormat.values()) {
             if (gtinLength == gtinFormat.length()) {
                 return gtinFormat;
             }
         }
-        throw new IllegalArgumentException("Length '" + gtinLength + "' does not match the " +
-                "length of any known GTIN formats");
+        throw new IllegalArgumentException("Length '" + gtinLength + "' does not match the "
+                + "length of any known GTIN formats");
     }
 
     /**

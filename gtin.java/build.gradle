@@ -15,6 +15,8 @@
  */
 
 apply plugin: 'java'
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
 apply plugin: 'maven'
 apply plugin: 'jacoco'
 apply plugin: 'com.github.kt3k.coveralls'
@@ -50,6 +52,34 @@ task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
     from sourceSets.main.allSource
 }
+
+def checkstyleWarnings = 'build/reports/checkstyle'
+
+checkstyle {
+    toolVersion = "6.2"
+
+    configFile = new File('config/checkstyle/checkstyle.xml')
+
+    def configProps = ['checkstyleConfigDir': configFile.parentFile.absolutePath]
+    configProperties configProps
+}
+
+task checkstyleVerifyMain <<  {
+    File warningsFile = file("$checkstyleWarnings/main.xml")
+    if (warningsFile.exists() && warningsFile.text.contains("<error line")) {
+        throw new GradleException("There were checkstyle errors! For more info check $warningsFile")
+    }
+}
+
+task checkstyleVerifyTest <<  {
+    File warningsFile = file("$checkstyleWarnings/test.xml")
+    if (warningsFile.exists() && warningsFile.text.contains("<error line")) {
+        throw new GradleException("There were checkstyle errors! For more info check $warningsFile")
+    }
+}
+
+checkstyleMain.finalizedBy 'checkstyleVerifyMain'
+checkstyleTest.finalizedBy 'checkstyleVerifyTest'
 
 jacocoTestReport {
     reports {

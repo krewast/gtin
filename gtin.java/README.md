@@ -8,29 +8,29 @@ A Java library for validating and parsing GTIN-8, GTIN-12, GTIN-13 and GTIN-14 c
 
 Check if a string is a valid GTIN by validating the checksum
 
-    GTIN.isValid("734092309436");   // true
-    GTIN.isValid("734092309432");   // false
-    GTIN.isValid12("734092309436"); // true
-    GTIN.isValid13("734092309436"); // false
+    Gtin.isValid("734092309436");   // true
+    Gtin.isValid("734092309432");   // false
+    Gtin.isValid12("734092309436"); // true
+    Gtin.isValid13("734092309436"); // false
 
 See if a string matches the general GTIN format
 
-    GTIN.matchesFormat("00000000");   // true
-    GTIN.matchesFormat12("00000000"); // false
-    GTIN.matchesFormat("123");        // false
-    GTIN.matchesFormat("aaaaaaaa");   // false
+    Gtin.matchesFormat("00000000");   // true
+    Gtin.matchesFormat12("00000000"); // false
+    Gtin.matchesFormat("123");        // false
+    Gtin.matchesFormat("aaaaaaaa");   // false
 
 Calculate the check digit for a partial GTIN string
 
-    GTIN.calculateCheckDigit("73409230943"); // 6
+    Gtin.calculateCheckDigit("73409230943"); // 6
 
 Create a GTIN string from a partial string
 
-    GTIN.withCheckDigit("73409230943"); // 734092309436
+    Gtin.withCheckDigit("73409230943"); // 734092309436
 
 Parse a string to a GTIN object
 
-    GTIN gtin = GTIN.create("734092309436");
+    Gtin gtin = GTIN.create("734092309436");
 
 Convert a GTIN object back to a string
 
