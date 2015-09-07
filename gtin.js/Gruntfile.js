@@ -62,7 +62,7 @@ module.exports = function(grunt) {
         grunt.file.write('./build/coverage-results/' + coverageFilename + '.lcov', report);
     });
 
-    grunt.task.registerTask('lcov:combine', 'Combines separate lcov files into one.', function() {
+    grunt.task.registerTask('lcov_aggregate', 'Aggregates separate lcov files into one single file.', function() {
         var files = grunt.file.expand('./build/coverage-results/*.lcov');
         var report = '';
         for (var i = 0; i < files.length; i++) {
@@ -85,5 +85,5 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['jshint', 'concat', 'blanket_qunit', 'uglify']);
     grunt.registerTask('build', ['jshint', 'concat', 'blanket_qunit', 'uglify']);
     grunt.registerTask('test', ['jshint', 'concat', 'blanket_qunit']);
-    grunt.registerTask('coverage', ['lcov', 'coveralls']);
+    grunt.registerTask('coverage', ['lcov_aggregate', 'coveralls']);
 };
