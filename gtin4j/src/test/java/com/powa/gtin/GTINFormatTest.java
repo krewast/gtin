@@ -22,7 +22,7 @@ import static org.junit.Assert.assertEquals;
 public class GTINFormatTest {
 
     @Test(expected = IllegalArgumentException.class)
-    public void forLength7ShouldThrowIllegalArgumentException() {
+    public void forLength7ShouldThrowException() {
         GTINFormat.forLength(7);
     }
 
@@ -32,12 +32,12 @@ public class GTINFormatTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void forLength9ShouldThrowIllegalArgumentException() {
+    public void forLength9ShouldThrowException() {
         GTINFormat.forLength(9);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void forLength11ShouldThrowIllegalArgumentException() {
+    public void forLength11ShouldThrowException() {
         GTINFormat.forLength(11);
     }
 
@@ -57,7 +57,7 @@ public class GTINFormatTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void forLength15ShouldThrowIllegalArgumentException() {
+    public void forLength15ShouldThrowException() {
         GTINFormat.forLength(15);
     }
 
@@ -72,6 +72,14 @@ public class GTINFormatTest {
     @Test(expected = IllegalArgumentException.class)
     public void valueOfUnknownValueShouldThrowException() {
         GTINFormat.valueOf("GTIN_15");
+    }
+
+    @Test
+    public void toStringShouldReturnReadableNames() {
+        assertEquals("GTIN-8", GTINFormat.GTIN_8.toString());
+        assertEquals("GTIN-12", GTINFormat.GTIN_12.toString());
+        assertEquals("GTIN-13", GTINFormat.GTIN_13.toString());
+        assertEquals("GTIN-14", GTINFormat.GTIN_14.toString());
     }
 
 }

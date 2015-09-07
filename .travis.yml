@@ -3,5 +3,15 @@ language: java
 jdk:
   - oraclejdk7
 
+env:
+  - MODULE_DIR=gtin.js
+  - MODULE_DIR=gtin4j
+
+install:
+  - ./gradlew -q -b $MODULE_DIR/install.gradle install
+
+script:
+  - ./gradlew -q -b $MODULE_DIR/build.gradle clean build
+
 after_success:
-  - ./gradlew jacocoTestReport coveralls
+  - ./gradlew -q -b $MODULE_DIR/build.gradle coverage

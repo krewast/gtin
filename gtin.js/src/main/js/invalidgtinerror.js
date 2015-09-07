@@ -14,4 +14,21 @@
  * limitations under the License.
  */
 
-include 'gtin.js', 'gtin4j'
+/**
+ * Indicates an attempt to perform an operation on a string that is not a valid GTIN.
+ */
+function InvalidGTINError(message) {
+    "use strict";
+    var error = Error.apply(this, arguments);
+    this.message = (message || null);
+    this.name = error.name = "InvalidGTINError";
+    if (error.stack) {
+        this.stack = error.stack.substring(error.stack.indexOf("\n") + 1);
+    }
+    this.toString = function() {
+        return (message !== null) ? (name + ": " + message) : name;
+    };
+}
+
+// Inherit from Error
+InvalidGTINError.prototype = Object.create(Error.prototype);

@@ -14,4 +14,12 @@
  * limitations under the License.
  */
 
-include 'gtin.js', 'gtin4j'
+require(["../../../dist/gtin.js"], function(gtin) {
+    QUnit.test("exportsShouldExist", function(assert) {
+        // Check exports exist
+        assert.ok(typeof gtin !== "undefined", "Passed!");
+        assert.ok(gtin.GTIN !== null, "Passed!");
+        assert.ok(gtin.GTINFormat !== null, "Passed!");
+        assert.ok(gtin.InvalidGTINError !== null, "Passed!");
+    });
+});

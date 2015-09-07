@@ -85,11 +85,11 @@ public final class GTIN implements Serializable {
         if (!matchesFormat(gtin)) {
             return false;
         }
-        if (format != null && gtin.length() != format.length()) {
+        int gtinLength = gtin.length();
+        if (format != null && gtinLength != format.length()) {
             return false;
         }
         int checkSum = 0;
-        int gtinLength = gtin.length();
         int weightBit = gtinLength % 2;
         for (int i = 0; i < gtinLength; i++) {
             int weight = i % 2 == weightBit ? 3 : 1;
@@ -188,24 +188,53 @@ public final class GTIN implements Serializable {
      * length that format GTIN and that the string contains only digits.
      *
      * @param gtin the possible GTIN string.
+     * @param format the GTIN format to check the string against.
      * @return {@code true} if the input string is a valid GTIN string, {@code false} otherwise.
      */
     public static boolean matchesFormat(final String gtin, final GTINFormat format) {
         return matchesFormat(gtin, format, 0);
     }
 
+    /**
+     * Checks whether the input string matches the GTIN-8 format, i.e. is of the correct
+     * length and that the string contains only digits.
+     *
+     * @param gtin the possible GTIN string.
+     * @return {@code true} if the input string is a valid GTIN string, {@code false} otherwise.
+     */
     public static boolean matchesFormat8(final String gtin) {
         return matchesFormat(gtin, GTINFormat.GTIN_8, 0);
     }
 
+    /**
+     * Checks whether the input string matches the GTIN-12 format, i.e. is of the correct
+     * length and that the string contains only digits.
+     *
+     * @param gtin the possible GTIN string.
+     * @return {@code true} if the input string is a valid GTIN string, {@code false} otherwise.
+     */
     public static boolean matchesFormat12(final String gtin) {
         return matchesFormat(gtin, GTINFormat.GTIN_12, 0);
     }
 
+    /**
+     * Checks whether the input string matches the GTIN-13 format, i.e. is of the correct
+     * length and that the string contains only digits.
+     *
+     * @param gtin the possible GTIN string.
+     * @return {@code true} if the input string is a valid GTIN string, {@code false} otherwise.
+     */
     public static boolean matchesFormat13(final String gtin) {
         return matchesFormat(gtin, GTINFormat.GTIN_13, 0);
     }
 
+    /**
+     * Checks whether the input string matches the GTIN-14 format, i.e. is of the correct
+     * length and that the string contains only digits.
+     *
+     * @param gtin the possible GTIN string.
+     * @return {@code true} if the input string is a valid GTIN string, {@code false} otherwise.
+     */
     public static boolean matchesFormat14(final String gtin) {
         return matchesFormat(gtin, GTINFormat.GTIN_14, 0);
     }
@@ -231,7 +260,7 @@ public final class GTIN implements Serializable {
             return false;
         }
         // Check whether is a number
-        return gtin.matches("^\\d+$");
+        return gtin.matches("^[0-9]+$");
     }
 
     /**

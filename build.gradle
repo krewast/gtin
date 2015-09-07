@@ -1,86 +1,15 @@
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'jacoco'
-apply plugin: 'com.github.kt3k.coveralls'
-
-group = 'com.powa'
-version = '1.0.4'
-
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
-        classpath 'net.saliman:gradle-cobertura-plugin:2.0.0'
-        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.4.0'
-    }
-}
-
-repositories {
-    jcenter()
-}
-
-dependencies {
-    testCompile 'junit:junit:4.12'
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc
-}
-
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-jacocoTestReport {
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-}
-
-artifacts {
-    archives javadocJar
-    archives sourcesJar
-}
-
-uploadArchives {
-    repositories.mavenDeployer {
-        repository(url: 'https://api.bintray.com/maven/powa/maven/gtin') {
-            authentication(userName: System.getenv('BINTRAY_USER'), password: System.getenv('BINTRAY_KEY'))
-        }
-
-        pom.project {
-            name 'gtin'
-            packaging 'jar'
-            description 'A library for validating and parsing GTIN-8, GTIN-12, GTIN-13 and GTIN-14 codes.'
-            url 'https://github.com/powa/gtin'
-
-            scm {
-                connection 'scm:git:git@github.com:powa/gtin.git'
-                developerConnection 'scm:git:git@github.com:powa/gtin.git'
-                url 'https://github.com/powa/gtin'
-            }
-
-            licenses {
-                license {
-                    name 'Apache License, Version 2.0'
-                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    distribution 'repo'
-                }
-            }
-
-            developers {
-                developer {
-                    name 'Joseph Earl'
-                    email 'joseph@powa.com'
-                    organization 'Powa Technologies Ltd'
-                    organizationUrl 'http://www.powa.com'
-                }
-            }
-        }
-    }
-}
+/**
+ * Copyright (C) 2015 Powa Technologies Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */

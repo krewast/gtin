@@ -60,8 +60,8 @@ public enum GTINFormat {
                 return gtinFormat;
             }
         }
-        throw new IllegalArgumentException("Length '" + gtinLength + "' does not match the length"
-                + " of any known GTIN formats");
+        throw new IllegalArgumentException("Length '" + gtinLength + "' does not match the " +
+                "length of any known GTIN formats");
     }
 
     /**
@@ -69,6 +69,14 @@ public enum GTINFormat {
      */
     public int length() {
         return length;
+    }
+
+    /**
+     * @return the name of the format, e.g. GTIN-12.
+     */
+    @Override
+    public String toString() {
+        return "GTIN-" + Integer.toString(length);
     }
 
 }

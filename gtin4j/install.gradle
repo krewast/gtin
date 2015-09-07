@@ -14,4 +14,6 @@
  * limitations under the License.
  */
 
-include 'gtin.js', 'gtin4j'
+task install() {
+    // do nothing, Java project
+}
