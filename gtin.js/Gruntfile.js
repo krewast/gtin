@@ -41,11 +41,11 @@ module.exports = function(grunt) {
         },
         coveralls: {
             all: {
-                src: './build/coverage-results/*.lcov',
+                src: './build/coverage-results/all.lcov'
             }
         },
         jshint: {
-            files: ['Gruntfile.js', 'src/**/*.js'],
+            files: ['Gruntfile.js', 'src/**/*.js']
         },
         watch: {
             files: ['<%= jshint.files %>'],
@@ -57,9 +57,22 @@ module.exports = function(grunt) {
         var cleanFilename = filename.replace('file://', '').replace(/^\/([A-Z]{1}:\/)/, '$1');
         var relativeFilename = path.relative(process.cwd(), cleanFilename).split(path.sep).join('/');
         var coverageFilename = filename.indexOf('/') > 0 ? filename.substring(filename.lastIndexOf('/') + 1) : filename;
-        var coverage = 'SF:' + relativeFilename + '\n' + data;
+        var report = 'SF:' + relativeFilename + '\n' + data;
 
-        grunt.file.write('./build/coverage-results/' + coverageFilename + '.lcov', coverage);
+        grunt.file.write('./build/coverage-results/' + coverageFilename + '.lcov', report);
+    });
+
+    grunt.task.registerTask('lcov:combine', 'Combines separate lcov files into one.', function() {
+        var files = grunt.file.expand('./build/coverage-results/*.lcov');
+        var report = '';
+        for (var i = 0; i < files.length; i++) {
+            var filename = files[i];
+            if (filename.match('all.lcov$') === null) {
+                report += grunt.file.read(filename);
+            }
+        }
+
+        grunt.file.write('./build/coverage-results/all.lcov', report);
     });
 
     grunt.loadNpmTasks('grunt-blanket-qunit');
@@ -72,5 +85,5 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['jshint', 'concat', 'blanket_qunit', 'uglify']);
     grunt.registerTask('build', ['jshint', 'concat', 'blanket_qunit', 'uglify']);
     grunt.registerTask('test', ['jshint', 'concat', 'blanket_qunit']);
-    grunt.registerTask('coverage', ['coveralls']);
+    grunt.registerTask('coverage', ['lcov', 'coveralls']);
 };
