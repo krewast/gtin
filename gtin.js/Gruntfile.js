@@ -17,16 +17,6 @@ module.exports = function(grunt) {
                 dest: 'dist/<%= pkg.name.replace(".js", "") %>.js'
             }
         },
-        uglify: {
-            options: {
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
-            },
-            dist: {
-                files: {
-                    'dist/<%= pkg.name.replace(".js", "") %>.min.js': ['<%= concat.dist.dest %>']
-                }
-            }
-        },
         blanket_qunit: {
             all: {
                 options: {
@@ -47,9 +37,32 @@ module.exports = function(grunt) {
         jshint: {
             files: ['Gruntfile.js', 'src/**/*.js']
         },
+        uglify: {
+            options: {
+                banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+            },
+            dist: {
+                files: {
+                    'dist/<%= pkg.name.replace(".js", "") %>.min.js': ['<%= concat.dist.dest %>']
+                }
+            }
+        },
         watch: {
             files: ['<%= jshint.files %>'],
             tasks: ['jshint']
+        },
+        publish: {
+            main: {
+                src: [
+                    'package.json',
+                    'dist',
+                    'README.md',
+                    'LICENSE.txt'
+                ]
+            },
+            regex: {
+                src: ['src/main/**/*']
+            }
         }
     });
 
@@ -81,6 +94,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-coveralls');
+    grunt.loadNpmTasks('grunt-publish');
 
     grunt.registerTask('clean', []);
     grunt.registerTask('test', ['concat', 'blanket_qunit']);

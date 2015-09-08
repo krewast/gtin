@@ -26,6 +26,7 @@
     "grunt-contrib-uglify": "0.7.0",
     "grunt-contrib-watch": "0.6.1",
     "grunt-coveralls": "^1.0.0",
+    "grunt-publish": "0.0.5",
     "qunitjs": "1.17.1",
     "requirejs": "2.0.6"
   },
