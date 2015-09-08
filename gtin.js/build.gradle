@@ -31,22 +31,44 @@ class GruntTask extends Exec {
     }
 }
 
-task install(type: Exec) {
-    commandLine Os.isFamily(Os.FAMILY_WINDOWS) ? 'npm.cmd' : 'npm', 'install'
+class NpmTask extends Exec {
+    private String npmExecutable = Os.isFamily(Os.FAMILY_WINDOWS) ? "npm.cmd" : "npm"
+    private String switches = ""
+
+    String npmArgs = ""
+
+    public NpmTask() {
+        super()
+        this.setExecutable(npmExecutable)
+    }
+
+    public void setNpmArgs(String npmArgs) {
+        this.args = "$switches $npmArgs".trim().split(" ") as List
+    }
 }
 
-task clean() {
-    // do nothing
+task init(type: NpmTask) {
+    // TODO move to Grunt task
+    npmArgs = "install"
 }
 
-task build(type: GruntTask) {
-    gruntArgs = "build"
+task clean(type: GruntTask) {
+    gruntArgs = "clean"
 }
 
 task test(type: GruntTask) {
     gruntArgs = "test"
 }
 
+task build(type: GruntTask) {
+    gruntArgs = "build"
+}
+
 task coverage(type: GruntTask) {
     gruntArgs = "coverage"
+}
+
+task publish(type: NpmTask) {
+    // TODO move to Grunt task
+    npmArgs = "publish"
 }

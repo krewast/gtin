@@ -36,7 +36,6 @@ function Gtin(gtin) {
      *
      * @param position the position, from 0 to length - 1.
      * @return the digit at the specified position.
-     * @throws java.lang.IndexOutOfBoundsException if the position is not between 0 and length - 1.
      */
     this.digitAt = function(position) {
         return parseInt(this.gtin.substring(position, position + 1));
@@ -49,8 +48,8 @@ function Gtin(gtin) {
         return gtin;
     };
 
-    this.equals = function(obj) {
-        return obj === this || obj instanceof Gtin && gtin === obj.gtin;
+    this.equals = function(other) {
+        return other === this || other instanceof Gtin && gtin === other.gtin;
     };
 
     this.hashCode = function() {

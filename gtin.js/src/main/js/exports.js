@@ -30,8 +30,8 @@
   }
 }(this, function() {
     return {
-        GTIN: Gtin,
-        GTINFormat: GtinFormat,
-        InvalidGTINError: GtinFormatError
+        Gtin: Gtin,
+        GtinFormat: GtinFormat,
+        InvalidGtinError: GtinFormatError
     };
 }));

@@ -9,8 +9,8 @@ module.exports = function(grunt) {
             },
             dist: {
                 src: [
-                    'src/main/js/gtinformaterror.js',
-                    'src/main/js/gtinformat.js',
+                    'src/main/js/gtin_format_error.js',
+                    'src/main/js/gtin_format.js',
                     'src/main/js/gtin.js',
                     'src/main/js/exports.js'
                 ],
@@ -31,9 +31,9 @@ module.exports = function(grunt) {
             all: {
                 options: {
                     urls: [
-                        'src/test/html/exportstest.html?coverage=true&grunt',
-                        'src/test/html/gtinformattest.html?coverage=true&grunt',
-                        'src/test/html/gtintest.html?coverage=true&grunt'
+                        'src/test/html/exports_test.html?coverage=true&grunt',
+                        'src/test/html/gtin_format_test.html?coverage=true&grunt',
+                        'src/test/html/gtin_test.html?coverage=true&grunt'
                     ],
                     threshold: 95
                 }
@@ -82,8 +82,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-coveralls');
 
-    grunt.registerTask('default', ['jshint', 'concat', 'blanket_qunit', 'uglify']);
-    grunt.registerTask('build', ['jshint', 'concat', 'blanket_qunit', 'uglify']);
-    grunt.registerTask('test', ['jshint', 'concat', 'blanket_qunit']);
+    grunt.registerTask('clean', []);
+    grunt.registerTask('test', ['concat', 'blanket_qunit']);
+    grunt.registerTask('build', ['concat', 'blanket_qunit', 'jshint', 'uglify']);
     grunt.registerTask('coverage', ['lcov_aggregate', 'coveralls']);
+    grunt.registerTask('default', ['clean', 'build']);
 };

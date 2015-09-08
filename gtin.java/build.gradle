@@ -43,6 +43,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
+task init() {
+    // do nothing, Java project
+}
+
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc
@@ -150,7 +154,7 @@ uploadArchives {
         }
 
         pom.project {
-            name 'gtin'
+            name 'gtin.java'
             packaging 'jar'
             description 'A Java library for validating and parsing GTIN-8, GTIN-12, GTIN-13 and GTIN-14 codes.'
             url 'https://github.com/powa/gtin'
@@ -179,4 +183,8 @@ uploadArchives {
             }
         }
     }
+}
+
+task publish(type: GradleBuild) {
+    tasks = ['uploadArchives']
 }

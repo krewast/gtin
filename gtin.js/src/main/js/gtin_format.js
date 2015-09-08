@@ -21,7 +21,7 @@ function GtinFormat(length) {
     "use strict";
     this.length = length;
     /**
-     * @return the name of the format, e.g. Gtin-12.
+     * @return the name of the format, e.g. GTIN-12.
      */
     this.toString = function() {
         return "GTIN-" + length.toString();
@@ -29,22 +29,22 @@ function GtinFormat(length) {
 }
 
 /**
- * Gtin-8, EAN-8. The short version of EAN-13 for extremely small products.
+ * GTIN-8, EAN-8. The short version of EAN-13 for extremely small products.
  */
 GtinFormat.GTIN_8 = new GtinFormat(8);
 
 /**
- * Gtin-12, UPC-A, UPC-12. Standard version of the UPC code.
+ * GTIN-12, UPC-A, UPC-12. Standard version of the UPC code.
  */
 GtinFormat.GTIN_12 = new GtinFormat(12);
 
 /**
- * Gtin-13, EAN-13. Primarily used in supermarkets to identify products at the point of sales.
+ * GTIN-13, EAN-13. Primarily used in supermarkets to identify products at the point of sales.
  */
 GtinFormat.GTIN_13 = new GtinFormat(13);
 
 /**
- * Gtin-14, EAN-14. Commonly used for traded goods.
+ * GTIN-14, EAN-14. Commonly used for traded goods.
  */
 GtinFormat.GTIN_14 = new GtinFormat(14);
 
@@ -64,13 +64,13 @@ GtinFormat.values = function() {
 /**
  * Returns the enum constant of the specified enum type with the specified name.
  *
- * @param the name of the constant to return.
+ * @param name the name of the constant to return.
  * @return the enum constant of the specified enum type with the specified name.
  */
 GtinFormat.valueOf = function(name) {
     var values = GtinFormat.values();
     for (var i in values) {
-        if (i == name) {
+        if (i == name && values.hasOwnProperty(i)) {
             return values[i];
         }
     }
@@ -104,7 +104,9 @@ if (Object.freeze) {
     Object.freeze(GtinFormat);
     var values = GtinFormat.values();
     for (var i in values) {
-        var gtinFormat = values[i];
-        Object.freeze(gtinFormat);
+        if (values.hasOwnProperty(i)) {
+            var gtinFormat = values[i];
+            Object.freeze(gtinFormat);
+        }
     }
 }

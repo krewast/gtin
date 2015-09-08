@@ -6,9 +6,10 @@ jdk:
 env:
   - MODULE_DIR=gtin.java
   - MODULE_DIR=gtin.js
+  - MODULE_DIR=gtin.rb
 
 install:
-  - ./gradlew -q -b $MODULE_DIR/install.gradle install
+  - ./gradlew -q -b $MODULE_DIR/build.gradle init
 
 script:
   - ./gradlew -q -b $MODULE_DIR/build.gradle clean build

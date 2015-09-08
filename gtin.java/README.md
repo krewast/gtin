@@ -1,8 +1,6 @@
-# gtin4j
+# gtin.java
 
 A Java library for validating and parsing GTIN-8, GTIN-12, GTIN-13 and GTIN-14 codes.
-
-[![Build Status](https://travis-ci.org/powa/gtin.svg?branch=master)](https://travis-ci.org/powa/gtin) [![Coverage Status](https://coveralls.io/repos/powa/gtin/badge.svg?branch=master&service=github)](https://coveralls.io/github/powa/gtin?branch=master) [![Download](https://api.bintray.com/packages/powa/maven/gtin/images/download.svg)](https://bintray.com/powa/maven/gtin/_latestVersion)
 
 ## Using
 
@@ -79,27 +77,39 @@ Gradle
         compile 'com.powa:gtin:1.0.4'
     }
 
+## Getting Started
+
+Install the development dependencies (currently none)
+
+    ../gradlew init
+
 ## Building
 
 To build the library and run all unit tests use
 
-    ./gradlew clean build
+    ../gradlew clean build
 
-View coverage report
+Generate coverage report
 
-    ./gradlew jacocoTestReport
+    ../gradlew jacocoTestReport
 
-## Deploying
+## Coverage
 
-The gtin4j library is deployed through Bintray.
+Generate coverage and send to [coveralls.io](https://coveralls.io)
+
+   ../gradlew coverage
+
+## Publishing
+
+The gtin.java library is published to JCenter through [Bintray](https://bintray.com)..
 
 The credentials for signing and upload are supplied through environment variables.
 Set `BINTRAY_USER` to your Bintray username `BINTRAY_KEY` to your API key.
 
 With this configuration in place a deployment can be started with
 
-    ./gradlew uploadArchives
+    ../gradlew publish
 
 You then need to manually log into [Bintray](https://bintray.com/powa/maven/gtin/view) and publish the archives to make them publicly available.
 
-It is recommended you go to the 'Files' section of the latest version and add the `gtin-x.y.z.jar` to the download list using the 'Actions' menu.
+It is recommended you go to the 'Files' section of the latest version and add the `gtin.java-x.y.z.jar` to the download list using the 'Actions' menu.

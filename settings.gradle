@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-include 'gtin.java', 'gtin.js'
+include 'gtin.java', 'gtin.js', 'gtin.rb'

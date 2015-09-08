@@ -1,0 +1,15 @@
+require "bundler/gem_tasks"
+require "rspec/core/rake_task"
+require 'rubocop/rake_task'
+
+RSpec::Core::RakeTask.new(:spec)
+RuboCop::RakeTask.new(:rubocop) do |task|
+  task.patterns = ['lib/**/*.rb']
+end
+
+task :clean => []
+task :test => [:spec]
+task :build => [:spec, :rubocop]
+task :coverage => []
+task :publish => [:release]
+task :default => [:clean, :build]

@@ -21,7 +21,7 @@ package com.powa.gtin;
 public class GtinFormatException extends IllegalArgumentException {
 
     /**
-     * Constructs a new {@code InvalidGTINException} with the specified detail message. The
+     * Constructs a new {@code GtinFormatException} with the specified detail message. The
      * cause is not initialized, and may subsequently be initialized by a call to {@link #initCause}.
      *
      * @param message the detail message.
