@@ -34,7 +34,7 @@ Convert a GTIN object back to a string
 
     gtin.toString();
 
-Add gtin4j as a dependency of your application with
+Add gtin.java as a dependency of your application with
 
 Maven
 
@@ -43,38 +43,26 @@ Maven
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
-            <id>bintray-powa-maven</id>
-            <name>bintray</name>
-            <url>http://dl.bintray.com/powa/maven</url>
+            <id>jcenter</id>
+            <name>jcenter</name>
+            <url>http://jcenter.bintray.com</url>
         </repository>
     </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>bintray-powa-maven</id>
-            <name>bintray-plugins</name>
-           <url>http://dl.bintray.com/powa/maven</url>
-        </pluginRepository>
-    </pluginRepositories>
     <dependencies>
         <dependency>
             <group>com.powa</group>
-            <artifactId>gtin</artifactId>
-            <version>1.0.4</version>
+            <artifactId>gtin.java</artifactId>
+            <version>1.1.0</version>
         </dependency>
     </dependencies>
 
 Gradle
 
     repositories {
-        maven {
-            url  "http://dl.bintray.com/powa/maven"
-        }
+        jcenter()
     }
     dependencies {
-        compile 'com.powa:gtin:1.0.4'
+        compile 'com.powa:gtin.java:1.1.0'
     }
 
 ## Getting Started

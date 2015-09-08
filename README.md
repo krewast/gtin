@@ -8,6 +8,7 @@ It also serves as an example for implementing a library in multiple languages wi
 
 * [gtin.java](gtin.java/README.md)
 * [gtin.js](gtin.js/README.md)
+* [gtin.rb](gtin.rb/README.md)
 
 ## Getting Started
 
