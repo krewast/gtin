@@ -1,0 +1,10 @@
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/node_modules
+*.iml
+build.gradle
+/src/test
+/vendor

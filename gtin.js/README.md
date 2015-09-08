@@ -2,6 +2,8 @@
 
 A JavaScript library for validating and parsing GTIN-8, GTIN-12, GTIN-13 and GTIN-14 codes.
 
+[![Download](http://npmjs.com/package/gtin.js)](http://badge.fury.io/js/gtin.js)
+
 ## Using
 
 Check if a string is a valid GTIN by validating the checksum
@@ -99,9 +101,11 @@ Or with grunt
 
 ## Publishing
 
-The gtin.js library is published to [npmjs](https://www.npmjs.com).
+The gtin.js library is published to [npm](https://www.npmjs.com).
 
-Make sure you have [created an npm account](https://docs.npmjs.com/misc/developers).
+Make sure you have [created an npm account](https://docs.npmjs.com/misc/developers) and logged into it
+
+    npm login
 
 With this configuration in place a deployment can be started with
 

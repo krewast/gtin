@@ -50,19 +50,6 @@ module.exports = function(grunt) {
         watch: {
             files: ['<%= jshint.files %>'],
             tasks: ['jshint']
-        },
-        publish: {
-            main: {
-                src: [
-                    'package.json',
-                    'dist',
-                    'README.md',
-                    'LICENSE.txt'
-                ]
-            },
-            regex: {
-                src: ['src/main/**/*']
-            }
         }
     });
 
@@ -94,7 +81,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-coveralls');
-    grunt.loadNpmTasks('grunt-publish');
 
     grunt.registerTask('clean', []);
     grunt.registerTask('test', ['concat', 'blanket_qunit']);

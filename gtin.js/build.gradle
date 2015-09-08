@@ -68,6 +68,6 @@ task coverage(type: GruntTask) {
     gruntArgs = "coverage"
 }
 
-task publish(type: GruntTask) {
-    gruntArgs = "publish"
+task publish(type: NpmTask) {
+    npmArgs = "publish"
 }

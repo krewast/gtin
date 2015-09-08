@@ -2,6 +2,8 @@
 
 A Java library for validating and parsing GTIN-8, GTIN-12, GTIN-13 and GTIN-14 codes.
 
+[ ![Download](https://api.bintray.com/packages/powa/maven/gtin.java/images/download.svg) ](https://bintray.com/powa/maven/gtin.java/_latestVersion)
+
 ## Using
 
 Check if a string is a valid GTIN by validating the checksum
@@ -52,7 +54,7 @@ Maven
         <dependency>
             <group>com.powa</group>
             <artifactId>gtin.java</artifactId>
-            <version>1.1.0</version>
+            <version>1.1.1</version>
         </dependency>
     </dependencies>
 
@@ -62,7 +64,7 @@ Gradle
         jcenter()
     }
     dependencies {
-        compile 'com.powa:gtin.java:1.1.0'
+        compile 'com.powa:gtin.java:1.1.1'
     }
 
 ## Getting Started
