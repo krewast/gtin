@@ -67,3 +67,7 @@ task build(type: GruntTask) {
 task coverage(type: GruntTask) {
     gruntArgs = "coverage"
 }
+
+task publish(type: GruntTask) {
+    gruntArgs = "publish"
+}
