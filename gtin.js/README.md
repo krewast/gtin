@@ -2,7 +2,7 @@
 
 A JavaScript library for validating and parsing GTIN-8, GTIN-12, GTIN-13 and GTIN-14 codes.
 
-[![Download](http://badge.fury.io/js/gtin.js)](http://npmjs.com/package/gtin.js)
+[![Download](https://badge.fury.io/js/gtin.js.svg)](http://npmjs.com/package/gtin.js)
 
 ## Using
 
