@@ -149,7 +149,7 @@ artifacts {
 
 uploadArchives {
     repositories.mavenDeployer {
-        repository(url: 'https://api.bintray.com/maven/powa/maven/gtin') {
+        repository(url: 'https://api.bintray.com/maven/powa/maven/gtin.java') {
             authentication(userName: System.getenv('BINTRAY_USER'), password: System.getenv('BINTRAY_KEY'))
         }
 
