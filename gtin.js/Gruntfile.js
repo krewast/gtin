@@ -57,8 +57,7 @@ module.exports = function(grunt) {
         var cleanFilename = filename.replace('file://', '').replace(/^\/([A-Z]{1}:\/)/, '$1');
         var relativeFilename = path.relative(process.cwd(), cleanFilename).split(path.sep).join('/');
         var coverageFilename = filename.indexOf('/') > 0 ? filename.substring(filename.lastIndexOf('/') + 1) : filename;
-        // Prepend gtin.js/ to the filename so coveralls can find the source when looking in the repo
-        var report = 'SF:gtin.js/' + relativeFilename + '\n' + data;
+        var report = 'SF:' + relativeFilename + '\n' + data;
 
         grunt.file.write('./build/coverage-results/' + coverageFilename + '.lcov', report);
     });
