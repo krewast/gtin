@@ -2,7 +2,7 @@
 
 A Ruby library for validating and parsing GTIN-8, GTIN-12, GTIN-13 and GTIN-14 codes.
 
-[![Download](https://rubygems.org/gems/gtin.rb)](http://badge.fury.io/rb/gtin.rb)
+[![Download](http://badge.fury.io/rb/gtin.rb)](https://rubygems.org/gems/gtin.rb)
 
 ## Using
 

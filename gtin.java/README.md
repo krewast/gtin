@@ -2,7 +2,7 @@
 
 A Java library for validating and parsing GTIN-8, GTIN-12, GTIN-13 and GTIN-14 codes.
 
-[ ![Download](https://api.bintray.com/packages/powa/maven/gtin.java/images/download.svg) ](https://bintray.com/powa/maven/gtin.java/_latestVersion)
+[![Download](https://api.bintray.com/packages/powa/maven/gtin.java/images/download.svg)](https://bintray.com/powa/maven/gtin.java/_latestVersion)
 
 ## Using
 
