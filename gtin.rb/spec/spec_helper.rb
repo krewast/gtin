@@ -5,6 +5,8 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
     SimpleCov::Formatter::HTMLFormatter,
     Coveralls::SimpleCov::Formatter
 ]
+SimpleCov.minimum_coverage(95)
+SimpleCov.maximum_coverage_drop(1)
 SimpleCov.start
 
 RSpec.configure do |config|
