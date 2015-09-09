@@ -114,7 +114,3 @@ With this configuration in place a deployment can be started with
 Or directly with npm
 
     npm publish
-
-You then need to manually log into [Bintray](https://bintray.com/powa/maven/gtin/view) and publish the archives to make them publicly available.
-
-It is recommended you go to the 'Files' section of the latest version and add the `gtin-x.y.z.jar` to the download list using the 'Actions' menu.
