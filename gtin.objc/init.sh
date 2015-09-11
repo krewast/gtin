@@ -1,3 +1,4 @@
+#!/bin/sh
 gem install cocoapods
 gem install xcpretty
 gem install bundler

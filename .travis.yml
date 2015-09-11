@@ -14,10 +14,10 @@ env:
   - MODULE_DIR=gtin.rb
 
 install:
-  - ./gradlew -q -b $MODULE_DIR/build.gradle init
+  - ./gradlew -q -b $MODULE_DIR/build.gradle init --stacktrace --debug
 
 script:
-  - ./gradlew -q -b $MODULE_DIR/build.gradle clean build
+  - ./gradlew -q -b $MODULE_DIR/build.gradle clean build --stacktrace --debug
 
 after_success:
   - ./gradlew -q -b $MODULE_DIR/build.gradle coverage
