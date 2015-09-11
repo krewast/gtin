@@ -47,8 +47,9 @@ task build(type: Exec, dependsOn: 'test') {
     commandLine "./build.sh"
 }
 
-task coverage(type: BundlerTask) {
-    bundlerArgs = "exec slather"
+task coverage(type: Exec) {
+    executable "slather"
+    args "-s", "GTINObjc.xcodeproj"
 }
 
 task publish(type: Exec) {
