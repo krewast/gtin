@@ -1,4 +1,4 @@
-language: java
+language: objective-c
 
 os:
   - osx
@@ -14,10 +14,10 @@ env:
   - MODULE_DIR=gtin.rb
 
 install:
-  - ./gradlew -q -b $MODULE_DIR/build.gradle init --stacktrace --debug
+  - ./gradlew -q -b $MODULE_DIR/build.gradle init
 
 script:
-  - ./gradlew -q -b $MODULE_DIR/build.gradle clean build --stacktrace --debug
+  - ./gradlew -q -b $MODULE_DIR/build.gradle clean build
 
 after_success:
   - ./gradlew -q -b $MODULE_DIR/build.gradle coverage

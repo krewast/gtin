@@ -2,6 +2,7 @@
 # First Run Tests
 xcodebuild test -project GTINObjc.xcodeproj/ \
 -scheme 'gtin.objc' \
+-sdk iphonesimulator \
 -configuration Debug | xcpretty -c
 
 #Above we're piping output through xcpretty, which is not required
