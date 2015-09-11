@@ -47,8 +47,11 @@ class NpmTask extends Exec {
     }
 }
 
-task init(type: NpmTask) {
-    // TODO move to Grunt task
+task grunt(type: NpmTask) {
+    npmArgs = "install -g grunt-cli"
+}
+
+task init(type: NpmTask, dependsOn: 'grunt') {
     npmArgs = "install"
 }
 
