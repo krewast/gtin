@@ -79,7 +79,7 @@ GtinFormat.valueOf = function(name) {
 };
 
 /**
- * Gets the Gtin format for the specified length.
+ * Gets the GTIN format for the specified length.
  *
  * @param gtinLength the length of the Gtin.
  * @return the GtinFormat for the given length.

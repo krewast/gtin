@@ -2,9 +2,9 @@
 
 A set of libraries for validating and parsing GTIN-8, GTIN-12, GTIN-13 and GTIN-14 codes.
 
-It also servers as an example of implementing a library in multiple languages with linting and style checking, unit tests, code coverage and publishing to public binary repositories using Gradle as a common build system.
-
 [![Build Status](https://travis-ci.org/powa/gtin.svg?branch=master)](https://travis-ci.org/powa/gtin) [![Coverage Status](https://coveralls.io/repos/powa/gtin/badge.svg?branch=master&service=github)](https://coveralls.io/github/powa/gtin?branch=master)
+
+gtin also serves as an example of how to implement a library in multiple languages with linting and style checking, unit tests, code coverage and publishing to public binary repositories using Gradle as a common build system.
 
 * [gtin.java](gtin.java/README.md)
 * [gtin.js](gtin.js/README.md)

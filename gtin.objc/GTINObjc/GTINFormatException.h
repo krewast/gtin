@@ -14,4 +14,9 @@
  * limitations under the License.
  */
 
-include 'gtin.java', 'gtin.js', 'gtin.objc', 'gtin.rb'
+#import <Foundation/Foundation.h>
+
+/**
+ * Indicates an attempt to perform an operation on a string that is not a valid GTIN.
+ */
+FOUNDATION_EXPORT NSString *const GTINFormatException;

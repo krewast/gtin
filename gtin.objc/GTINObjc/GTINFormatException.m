@@ -14,4 +14,6 @@
  * limitations under the License.
  */
 
-include 'gtin.java', 'gtin.js', 'gtin.objc', 'gtin.rb'
+#import "GTINFormatException.h"
+
+NSString *const GTINFormatException = @"GTINFormatException";

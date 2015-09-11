@@ -173,7 +173,7 @@ public final class Gtin implements Serializable {
     }
 
     /**
-     * Checks whether the input string matches the GTIN format, i.e. is of the correct length for
+     * Checks whether the input string matches any GTIN format, i.e. is of the correct length for
      * a GTIN and that the string contains only digits.
      *
      * @param gtin the possible GTIN string.

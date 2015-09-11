@@ -13,5 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#import <Foundation/Foundation.h>
 
-include 'gtin.java', 'gtin.js', 'gtin.objc', 'gtin.rb'
+//! Project version number for GTINObjc.
+FOUNDATION_EXPORT double GTINObjcVersionNumber;
+
+//! Project version string for GTINObjc.
+FOUNDATION_EXPORT const unsigned char GTINObjcVersionString[];
+
+// Import all the public headers of your framework using statements like #import <GTIN/PublicHeader.h>
+#import <GTINObjc/GTIN.h>
+#import <GTINObjc/GTINFormat.h>
+#import <GTINObjc/GTINFormatException.h>
