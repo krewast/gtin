@@ -49,7 +49,6 @@ task build(type: Exec, dependsOn: 'test') {
 
 task coverage(type: Exec) {
     executable "slather"
-    args "-s", "GTINObjc.xcodeproj"
 }
 
 task publish(type: Exec) {
