@@ -212,7 +212,7 @@ Gtin.withCheckDigit = function(gtinWithoutCheckDigit) {
 };
 
 /**
- * Checks whether the input string matches the specific GTIN format, i.e. is of the correct
+ * Checks whether the input string matches the GTIN format, i.e. is of the correct
  * length that format Gtin and that the string contains only digits.
  *
  * @param gtin the possible GTIN string.

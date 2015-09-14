@@ -149,7 +149,7 @@ module Gtin
     end
 
     #
-    # Checks whether the input string matches the specific GTIN format, i.e. is
+    # Checks whether the input string matches the GTIN format, i.e. is
     # of the correct length that format GTIN and that the string contains only
     # digits.
     #
