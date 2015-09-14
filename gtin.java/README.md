@@ -30,7 +30,7 @@ Create a GTIN string from a partial string
 
 Parse a string to a GTIN object
 
-    Gtin gtin = GTIN.create("734092309436");
+    Gtin gtin = Gtin.create("734092309436");
 
 Convert a GTIN object back to a string
 
@@ -91,7 +91,7 @@ Generate coverage and send to [coveralls.io](https://coveralls.io)
 
 ## Publishing
 
-The gtin.java library is published to JCenter through [Bintray](https://bintray.com)..
+The gtin.java library is published to JCenter through [Bintray](https://bintray.com).
 
 The credentials for signing and upload are supplied through environment variables.
 Set `BINTRAY_USER` to your Bintray username `BINTRAY_KEY` to your API key.

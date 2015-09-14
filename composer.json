@@ -17,12 +17,12 @@
       "satooshi/php-coveralls": "dev-master"
     },
     "autoload": {
-        "psr-4": {"Powa\\Gtin\\": "src/Powa/Gtin"}
+        "psr-4": {"Powa\\Gtin\\": "gtin.php/src/Powa/Gtin"}
     },
     "autoload-dev": {
-        "psr-4": {"Powa\\Gtin\\": "tests/Powa/Gtin"}
+        "psr-4": {"Powa\\Gtin\\": "gtin.php/tests/Powa/Gtin"}
     },
     "scripts": {
-        "test": "./phpunit.phar"
+        "test": "./gtin.php/phpunit.phar"
     }
 }
