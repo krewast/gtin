@@ -8,6 +8,8 @@ A PHP library for validating and parsing GTIN-8, GTIN-12, GTIN-13 and GTIN-14 co
 
 Check if a string is a valid GTIN by validating the checksum
 
+    use Powa\Gtin\Gtin;
+
     Gtin::isValid("734092309436");   // true
     Gtin::isValid("734092309432");   // false
     Gtin::isValid12("734092309436"); // true
@@ -50,7 +52,7 @@ Install the development dependencies (currently none)
 
 Or directly with composer
 
-    php composer.phar
+    php ../composer.phar
 
 ## Building
 
@@ -60,7 +62,7 @@ To build the library and run all unit tests use
 
 Using composer directly
 
-    php composer.phar test
+    php ../composer.phar test
 
 ## Coverage
 
@@ -70,9 +72,9 @@ Generate coverage and send to [coveralls.io](https://coveralls.io)
 
 Or
 
-    php composer.phar test
+    php ../composer.phar test
 
 ## Publishing
 
 The gtin.php library is published through [Packagist](https://packagist.org).
-It indexes the public Git repository so you just need to push the latest code.
+It indexes the public Git repository and has a hook to detect new pushes.
