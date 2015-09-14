@@ -32,14 +32,16 @@ class PhpTask extends Exec {
 }
 
 task init(type: PhpTask) {
-    phpArgs = "../composer.phar install --no-interaction"
+    workingDir = "../"
+    phpArgs = "composer.phar install --no-interaction"
 }
 
 task clean() {
 }
 
 task test(type: PhpTask) {
-    phpArgs = "../composer.phar test"
+    workingDir = "../"
+    phpArgs = "composer.phar test"
 }
 
 task build(dependsOn: 'test') {
