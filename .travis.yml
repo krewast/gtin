@@ -13,6 +13,7 @@ env:
   - MODULE_DIR=gtin.java
   - MODULE_DIR=gtin.js
   - MODULE_DIR=gtin.objc
+  - MODULE_DIR=gtin.php
   - MODULE_DIR=gtin.rb
 
 install:
