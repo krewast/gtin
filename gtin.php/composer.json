@@ -1,0 +1,28 @@
+{
+    "name": "powa/gtin.php",
+    "description": "A PHP library for validating and parsing GTIN-8, GTIN-12, GTIN-13 and GTIN-14 codes.",
+    "homepage": "https://github.com/powa/gtin",
+    "type": "library",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Joseph Earl",
+            "email": "joseph@powa.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+      "satooshi/php-coveralls": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {"Powa\\Gtin\\": "src/Powa/Gtin"}
+    },
+    "autoload-dev": {
+        "psr-4": {"Powa\\Gtin\\": "tests/Powa/Gtin"}
+    },
+    "scripts": {
+        "test": "./phpunit.phar"
+    }
+}

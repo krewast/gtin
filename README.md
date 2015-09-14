@@ -9,6 +9,7 @@ gtin also serves as an example of how to implement a library in multiple languag
 * [gtin.java](gtin.java/README.md)
 * [gtin.js](gtin.js/README.md)
 * [gtin.objc](gtin.objc/README.md)
+* [gtin.php](gtin.php/README.md)
 * [gtin.rb](gtin.rb/README.md)
 
 ## Getting Started

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="vendor/autoload.php" colors="true">
+    <testsuites>
+        <testsuite name="Powa Gtin Test Suite">
+            <directory>tests/Powa/Gtin/</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src/Powa/Gtin/</directory>
+        </whitelist>
+    </filter>
+
+    <logging>
+      <log type="coverage-html" target="build/reports/html" highLowerBound="95" />
+      <log type="coverage-clover" target="build/reports/clover/coverage.xml"/>
+    </logging>
+
+    <php>
+        <ini name="date.timezone" value="UTC"/>
+    </php>
+</phpunit>
